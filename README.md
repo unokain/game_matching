@@ -52,20 +52,20 @@ https://cacoo.com/diagrams/gFizDUXl2uOAYhNr#ED43C
 https://cacoo.com/diagrams/NcE3Qt9lSyCCtGqf#93624?reload_rt=1617373778665_1&recover=t
 
 使用予定Gem
-carrierwave
-mini_magick
-gem 'faker'
-devise
-kaminari
-acts-as-taggable-ong
-bootstrap
-ajax
+ carrierwave
+ mini_magick
+ gem 'faker'
+ devise
+ kaminari
+ acts-as-taggable-ong
+ bootstrap
+ ajax
 
 使用予定の「就職term」技術
-devise
-コメント機能
-AWS
-友達登録機能
+ devise
+ コメント機能
+ AWS
+ 友達登録機能
 
 カリキュラム外で取り入れる技術（使用予定）
 acts-as-taggable-ongを使ったタグ管理機能
