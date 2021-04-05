@@ -43,13 +43,13 @@ https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSb
 https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit#gid=1629118125
 
 画面遷移図
-https://cacoo.com/diagrams/j50tDlqp2K6XBgcY#2192E
+https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit#gid=1522365588
 
 ER図
-https://cacoo.com/diagrams/gFizDUXl2uOAYhNr#ED43C
+https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit#gid=1460871891
 
 画面ワイヤーフレーム
-https://cacoo.com/diagrams/NcE3Qt9lSyCCtGqf#93624?reload_rt=1617373778665_1&recover=t
+https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit#gid=8714513
 
 使用予定Gem
  carrierwave
