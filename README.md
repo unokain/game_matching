@@ -53,21 +53,21 @@ https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSb
 https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit?usp=sharing
 
 ## 使用予定Gem
- carrierwave
- mini_magick
- gem 'faker'
- devise
- kaminari
- acts-as-taggable-ong
- bootstrap
- ajax
- 
-## 使用予定の「就職term」技術
- devise
- コメント機能
- AWS
- 友達登録機能
+* carrierwave
+* mini_magick
+* gem 'faker'
+* devise
+* kaminari
+* acts-as-taggable-ong
+* bootstrap
+* ajax
 
-カリキュラム外で取り入れる技術（使用予定）
-acts-as-taggable-ongを使ったタグ管理機能
-pay.jpによる決済機能（余裕があれば）
+## 使用予定の「就職term」技術
+* devise
+* コメント機能
+* AWS
+* 友達登録機能
+
+ ## カリキュラム外で取り入れる技術（使用予定）
+* acts-as-taggable-ongを使ったタグ管理機能
+* pay.jpによる決済機能（余裕があれば）
