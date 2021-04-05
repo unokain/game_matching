@@ -1,19 +1,19 @@
-#README
+# README
 ゲームマッチングアプリ（仮）
 
-##概要
+## 概要
 ゲーマーのマッチングを目的とするアプリで、ゲームが上手いユーザーが人を集め、技術を教えることを手助けする。
 ユーザーがプランを計画し、催行日や期限を設けて実行する。ゲームを教えるユーザーは決済機能で金銭的報酬、コ
 メント機能やランキング機能で自己実現を報酬として会得する。
 
-##コンセプト
+## コンセプト
 ゲームが好きなユーザーがアプリを通じてコミュニティを形成し、業界の発展に貢献する。
 
-##バージョン
+## バージョン
 Ruby 2.6.5 
 Rails 5.2.4.4
 
-##機能一覧
+## 機能一覧
 - [ ] ログイン機能
 - [ ] ユーザー登録機能
   - [ ] メールアドレス、名前、パスワードは必須
@@ -37,22 +37,22 @@ Rails 5.2.4.4
 
 
 
-##カタログ設計
+## カタログ設計
 https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit?usp=sharing
 
-##テーブル定義
+## テーブル定義
 https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit?usp=sharing
 
-##画面遷移図
+## 画面遷移図
 https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit?usp=sharing
 
-##ER図
+## ER図
 https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit?usp=sharing
 
-##画面ワイヤーフレーム
+## 画面ワイヤーフレーム
 https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit?usp=sharing
 
-使用予定Gem
+## 使用予定Gem
  carrierwave
  mini_magick
  gem 'faker'
@@ -61,8 +61,8 @@ https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSb
  acts-as-taggable-ong
  bootstrap
  ajax
-
-使用予定の「就職term」技術
+ 
+## 使用予定の「就職term」技術
  devise
  コメント機能
  AWS
