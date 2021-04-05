@@ -1,18 +1,19 @@
-README
+#README
 ゲームマッチングアプリ（仮）
 
-概要
-　ゲーマーのマッチングを目的とするアプリで、ゲームが上手いユーザーが人を集め、技術を教えることを手助けする。
+##概要
+ゲーマーのマッチングを目的とするアプリで、ゲームが上手いユーザーが人を集め、技術を教えることを手助けする。
 ユーザーがプランを計画し、催行日や期限を設けて実行する。ゲームを教えるユーザーは決済機能で金銭的報酬、コ
 メント機能やランキング機能で自己実現を報酬として会得する。
 
-コンセプト
-　ゲームが好きなユーザーがアプリを通じてコミュニティを形成し、業界の発展に貢献する。
+##コンセプト
+ゲームが好きなユーザーがアプリを通じてコミュニティを形成し、業界の発展に貢献する。
 
-バージョン
-　Ruby 2.6.5 Rails 5.2.4.4
+##バージョン
+Ruby 2.6.5 
+Rails 5.2.4.4
 
-機能一覧
+##機能一覧
 - [ ] ログイン機能
 - [ ] ユーザー登録機能
   - [ ] メールアドレス、名前、パスワードは必須
@@ -36,20 +37,20 @@ README
 
 
 
-カタログ設計
-https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit#gid=0
+##カタログ設計
+https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit?usp=sharing
 
-テーブル定義
-https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit#gid=1629118125
+##テーブル定義
+https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit?usp=sharing
 
-画面遷移図
-https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit#gid=1522365588
+##画面遷移図
+https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit?usp=sharing
 
-ER図
-https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit#gid=1460871891
+##ER図
+https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit?usp=sharing
 
-画面ワイヤーフレーム
-https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit#gid=8714513
+##画面ワイヤーフレーム
+https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit?usp=sharing
 
 使用予定Gem
  carrierwave
