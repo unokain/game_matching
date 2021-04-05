@@ -38,19 +38,16 @@ Rails 5.2.4.4
 
 
 ## カタログ設計
-https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit?usp=sharing
+https://docs.google.com/spreadsheets/d/1zvaPTHeHArCu1Y-PpOT-1TodCdc0q3MeYH90IzNPiiM/edit?usp=sharing
 
 ## テーブル定義
 https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit?usp=sharing
 
-## 画面遷移図
-https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit?usp=sharing
-
-## ER図
-https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit?usp=sharing
+## 画面遷移図,ER図
+https://docs.google.com/spreadsheets/d/1_AxvymDTGwRX0arSO8jeZqEJ0zMDYnbIDIRahI7xjuc/edit?usp=sharing
 
 ## 画面ワイヤーフレーム
-https://docs.google.com/spreadsheets/d/1dDiq0F1QGjXyzu0OShLcF-tHokfM8NIE4BpXMeSbb1c/edit?usp=sharing
+https://docs.google.com/spreadsheets/d/1z5FMqYAlH0Ajbo4jcn2mYRVvT_cHh_z3wTsvwsRzIHc/edit?usp=sharing
 
 ## 使用予定Gem
 * carrierwave
