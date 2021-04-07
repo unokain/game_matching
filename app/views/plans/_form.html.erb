@@ -1,0 +1,31 @@
+<%= form_with(model: @plan, local: true ,url: plans_path) do |form| %>    
+<% if @plan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @plan.errors.count %>件のエラーがあります。</h2>
+      <ul>
+      <% @plan.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="plan_title">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+  <div class="plan_title">
+    <%= form.label :content %>
+    <%= form.text_field :content %>
+  </div>
+  <div>
+    <%= form.label :start_time %>
+    <%= form.text_field :start_time%>
+  </div>
+  <div>
+    <%= form.label :limit_time %>
+    <%= form.text_field :limit_time %>
+  </div>
+  <div class="actions">
+  <%= form.submit %>
+<% end %>
+<%= link_to "一覧画面にもどる", plans_path %>

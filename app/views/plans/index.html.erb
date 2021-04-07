@@ -1,0 +1,23 @@
+
+<h1 class="title">ゲームマッチングアプリ（仮）</h1>
+  <p><%= notice %></p>
+    <table>
+      <tr>
+        <th>ユーザーネーム</th>
+        <th>タイトル</th>
+        <th>コメント</th>
+      </tr>
+        <% @plans.each do |plan| %>
+      <tr>
+        <td><%= plan.title %></td>
+        <td><%= plan.content %></td>
+        <td><%= link_to '詳細を確認する', plan_path(plan.id) %></td>
+        <td><%= link_to '編集する', edit_plan_path(plan.id) %></td>
+        <td><%= link_to '削除する', plan_path(plan.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+      </tr>
+      <% end %>
+    </table>
+  <%= link_to '投稿する', new_plan_path %>
+  <footer class="footer">
+    <p>Copyright © 2020 株式会社Wing</p>
+  </footer>

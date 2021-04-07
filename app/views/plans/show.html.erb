@@ -1,0 +1,8 @@
+<h3>ブログ詳細画面</h3>
+<p>タイトル: <%= @plan.title %></p>
+<p>内容: <%= @plan.content %></p>
+<p>プラン開始日時: <%= @plan.start_time %></p>
+<p>申し込み期限: <%= @plan.limit_time %></p>
+<p id="notice"><%= notice %></p>
+<%= link_to '編集', edit_plan_path(@plan) %> |
+<%= link_to '戻る', plans_path %>

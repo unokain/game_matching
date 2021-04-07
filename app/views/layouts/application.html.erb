@@ -10,6 +10,19 @@
   </head>
 
   <body>
+    <div>
+      <header>
+        <ul>
+          <li>
+            <%= link_to 'ホーム', plans_path %>
+          </li>
+          <li class = "log"><%= link_to "プロフィール", plans_path%></li>
+          <li class = "log"><%= link_to "ログアウト", plans_path%></li>
+          </ul>
+       </header>
+    </div>
     <%= yield %>
   </body>
 </html>
+
+<!--,user_path(current_user.id)   ,session_path(current_user.id), method: :delete    -->
