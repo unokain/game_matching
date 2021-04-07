@@ -64,9 +64,7 @@ https://docs.google.com/spreadsheets/d/1z5FMqYAlH0Ajbo4jcn2mYRVvT_cHh_z3wTsvwsRz
 ## 使用予定の「就職term」技術
 * devise
 * コメント機能
-* AWS
-* 友達登録機能
 
  ## カリキュラム外で取り入れる技術（使用予定）
 * acts-as-taggable-ongを使ったタグ管理機能
-* pay.jpによる決済機能（余裕があれば）
+* pay.jpによる決済機能(優先順位 「低」)
