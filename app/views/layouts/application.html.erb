@@ -12,14 +12,22 @@
   <body>
     <div>
       <header>
-        <ul>
-          <li>
-            <%= link_to 'ホーム', plans_path %>
-          </li>
-          <li class = "log"><%= link_to "プロフィール", plans_path%></li>
-          <li class = "log"><%= link_to "ログアウト", plans_path%></li>
-          </ul>
+        <% if user_signed_in? %>
+          <%= link_to "ブログ投稿", plans_path %>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to "新規登録", new_user_registration_path %>
+          <%= link_to "ログイン", new_user_session_path %>
+        <% end %>
        </header>
+    </div>
+    <div>
+      <% if notice %>
+        <p class="alert alert-notice"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-error"><%= alert %></p>
+      <% end %>
     </div>
     <%= yield %>
   </body>

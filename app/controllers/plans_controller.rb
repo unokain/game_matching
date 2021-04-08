@@ -1,5 +1,6 @@
 class PlansController < ApplicationController
     before_action :set_plan, only: [:show, :edit, :update, :destroy]
+    before_action :authenticate_user!, only: [:new, :edit, :update, :destroy] #ログインしたユーザーのみ
     def index
       @plans = Plan.all 
     end
