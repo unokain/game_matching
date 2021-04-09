@@ -1,0 +1,20 @@
+<h1>about me</h1>
+
+<h3>ユーザー名</h3>
+<%= @user.name %>
+<h3>メールアドレス</h3>
+<%= @user.email %>
+
+<h2>ユーザー詳細ページ</h2>
+<p><%= "フォロー数: #{@user.followers.count}" %></p>
+<p><%= "フォロワー数: #{@user.following.count}" %></p>
+<p></p>
+
+<h3>フォロー一覧</h3>
+  <% @user.following.where.not(id: current_user.id).each do |user| %>
+    <p>
+      <%= "email: #{user.email}" %>
+      <%= render 'follow_form', user: user %>
+      <%= link_to "show", user_path(user) %>
+    </p>
+  <% end %>

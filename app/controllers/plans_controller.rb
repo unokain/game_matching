@@ -26,6 +26,8 @@ class PlansController < ApplicationController
     end
     def show
     #   @plan = Plan.find(params[:id])
+      @comments = @plan.comments
+      @comment = @plan.comments.build
     end
     def edit
     #   @plan = Plan.find(params[:id])

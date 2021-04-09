@@ -1,0 +1,10 @@
+  <h2>ユーザー</h2>
+  <% @users.each do |user| %>
+    <%= user.name %>
+    <%= user.email %>
+    <%= render 'follow_form', user: user %>
+    <%= link_to '詳細', user_path(user.id) %>
+    <% if current_user.id == user.id%>
+      <%= link_to '編集する', edit_user_registration_path(user.id) %>
+    <% end %>
+  <% end %>
