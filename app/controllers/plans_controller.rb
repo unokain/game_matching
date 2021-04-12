@@ -1,8 +1,14 @@
 class PlansController < ApplicationController
-    before_action :set_plan, only: [:show, :edit, :update, :destroy]
+    before_action :set_plan, only: [:show, :edit, :update, :destroy, :take, :cancel ]
     before_action :authenticate_user!, only: [:new, :edit, :update, :destroy] #ログインしたユーザーのみ
     def index
-      @plans = Plan.all 
+      if params[:tag]
+        @plans = Plan.tagged_with(params[:tag])
+        @tags = Plan.tag_counts_on(:tags).most_used(20)
+      else
+        @plans = Plan.all 
+        @tags = Plan.tag_counts_on(:tags).most_used(20)
+      end
     end
     def new
       if params[:back]
@@ -13,7 +19,7 @@ class PlansController < ApplicationController
     end
     def create
       @plan = Plan.new(plan_params)
-    #   @plan.user_id = current_user.id
+      @plan.user_id = current_user.id
       if params[:back]
         render :new
       else
@@ -28,6 +34,8 @@ class PlansController < ApplicationController
     #   @plan = Plan.find(params[:id])
       @comments = @plan.comments
       @comment = @plan.comments.build
+      @tags = @plan.tag_counts_on(:tags)
+      @user = @plan.user
     end
     def edit
     #   @plan = Plan.find(params[:id])
@@ -48,9 +56,27 @@ class PlansController < ApplicationController
      # @plan = current_user.plans.build(plan_params)
      # render :new if @plan.invalid?
     # end
+
+    def take
+      # 該当の投稿とログイン中のユーザーとの中間テーブルのレコードを作成する
+      PlanUser.create(plan_id: @plan.id, taker_id: current_user.id)
+      # フラッシュメッセージを表示（フラッシュメッセージを表示させない場合は書かなくて大丈夫です）
+      flash[:notice] = '申し込みが完了しました。'
+      # 投稿の詳細ページにリダイレクト
+      redirect_to action: "show"
+    end
+
+    def cancel
+      # 中間テーブルの中から、該当の投稿とログイン中のユーザーによるレコードを抽出する
+      plan_taker = PlanUser.find_by(plan_id: @plan.id, taker_id: current_user.id)
+      plan_taker.destroy
+      flash[:notice] = 'キャンセルが完了しました。'
+      redirect_to action: "show"
+    end
+
     private
     def plan_params
-      params.require(:plan).permit(:title, :content, :start_time, :limit_time)
+      params.require(:plan).permit(:title, :content, :start_time, :limit_time, :tag_list)
     end
     def set_plan
      @plan = Plan.find(params[:id])

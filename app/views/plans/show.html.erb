@@ -1,9 +1,23 @@
+
 <h3>ブログ詳細画面</h3>
 
 <div class="container">
+    <% @tags.each do |tag| %> 
+      <%= tag.name %>
+    <% end %>
+
   <div class="plan-text">
     <p><strong>タイトル</strong>：<%= @plan.title %></p>
     <p><strong>内容</strong>：<%= @plan.content %></p>
+  </div>
+  <div>
+  <% if @user.id != current_user.id %>
+    <% if @plan.taker_ids.include?(current_user.id) %>
+      <%= link_to "cansel", cancel_plan_path(@plan.id), data: { confirm: "cancell" } %>
+    <% else %>
+      <%= link_to "offer", take_plan_path(@plan.id), data: { confirm: "offer?" } %>
+    <% end %>
+  <% end %>
   </div>
   <p>コメント一覧</p>
   <div id="comments_area">

@@ -4,10 +4,15 @@ Rails.application.routes.draw do
   resources :users, only: [:index,:show] 
   resources :plans do
     resources :comments
+    member do
+      get 'take'
+      get 'cancel'
+    end
   end
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
   root 'plans#index'
   resources :relationships, only: [:create, :destroy]
+  get 'tags/:tag', to: 'plans#index', as: :tag 
 end

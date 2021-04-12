@@ -1,16 +1,25 @@
 
 <h1 class="title">ゲームマッチングアプリ（仮）</h1>
   <p><%= notice %></p>
+  <div>
+    <p>タグ一覧<p>
+    <% @tags.each do |tag| %> 
+      <%= link_to "#{tag.name}(#{tag.taggings_count})", tag_path(tag.name) %> 
+    <% end %> 
+    <%= link_to '一覧表示', plans_path %>
+
+  </div>
     <table>
       <tr>
-        <th>ユーザーネーム</th>
-        <th>タイトル</th>
-        <th>コメント</th>
+        <th>プラン名</th>
+        <th>プラン詳細</th>
+        <th>タグ</th>
       </tr>
         <% @plans.each do |plan| %>
       <tr>
         <td><%= plan.title %></td>
         <td><%= plan.content %></td>
+        <td><%= raw(plan.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %></td>
         <td><%= link_to '詳細を確認する', plan_path(plan.id) %></td>
         <td><%= link_to '編集する', edit_plan_path(plan.id) %></td>
         <td><%= link_to '削除する', plan_path(plan.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>

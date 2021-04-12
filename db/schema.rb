@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_08_103447) do
+ActiveRecord::Schema.define(version: 2021_04_12_051055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 2021_04_08_103447) do
     t.index ["plan_id"], name: "index_comments_on_plan_id"
   end
 
+  create_table "plan_users", force: :cascade do |t|
+    t.bigint "plan_id"
+    t.bigint "taker_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id"], name: "index_plan_users_on_plan_id"
+    t.index ["taker_id"], name: "index_plan_users_on_taker_id"
+  end
+
   create_table "plans", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -30,6 +39,8 @@ ActiveRecord::Schema.define(version: 2021_04_08_103447) do
     t.datetime "limit_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_plans_on_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -40,6 +51,33 @@ ActiveRecord::Schema.define(version: 2021_04_08_103447) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "taggings", id: :serial, force: :cascade do |t|
+    t.integer "tag_id"
+    t.string "taggable_type"
+    t.integer "taggable_id"
+    t.string "tagger_type"
+    t.integer "tagger_id"
+    t.string "context", limit: 128
+    t.datetime "created_at"
+    t.index ["context"], name: "index_taggings_on_context"
+    t.index ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+    t.index ["taggable_id", "taggable_type", "context"], name: "taggings_taggable_context_idx"
+    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
+    t.index ["taggable_id"], name: "index_taggings_on_taggable_id"
+    t.index ["taggable_type"], name: "index_taggings_on_taggable_type"
+    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type"
+    t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
+  end
+
+  create_table "tags", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer "taggings_count", default: 0
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -69,4 +107,8 @@ ActiveRecord::Schema.define(version: 2021_04_08_103447) do
   end
 
   add_foreign_key "comments", "plans"
+  add_foreign_key "plan_users", "plans"
+  add_foreign_key "plan_users", "users", column: "taker_id"
+  add_foreign_key "plans", "users"
+  add_foreign_key "taggings", "tags"
 end
