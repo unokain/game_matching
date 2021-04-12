@@ -1,6 +1,7 @@
 class PlansController < ApplicationController
     before_action :set_plan, only: [:show, :edit, :update, :destroy, :take, :cancel ]
-    before_action :authenticate_user!, only: [:new, :edit, :update, :destroy] #ログインしたユーザーのみ
+    before_action :authenticate_user!, only: [:new, :edit, :update, :destroy] 
+
     def index
       if params[:tag]
         @plans = Plan.tagged_with(params[:tag])
@@ -10,6 +11,7 @@ class PlansController < ApplicationController
         @tags = Plan.tag_counts_on(:tags).most_used(20)
       end
     end
+
     def new
       if params[:back]
         @plan = Plan.new(plan_params)
@@ -17,6 +19,7 @@ class PlansController < ApplicationController
         @plan = Plan.new
       end
     end
+
     def create
       @plan = Plan.new(plan_params)
       @plan.user_id = current_user.id
@@ -30,44 +33,44 @@ class PlansController < ApplicationController
         end
       end
     end
+
     def show
     #   @plan = Plan.find(params[:id])
       @comments = @plan.comments
       @comment = @plan.comments.build
       @tags = @plan.tag_counts_on(:tags)
       @user = @plan.user
+      @plan_user = @plan.takers
     end
+
     def edit
-    #   @plan = Plan.find(params[:id])
     end
+
     def update
-    #  @plan = Plan.find(params[:id])
       if @plan.update(plan_params)
         redirect_to plans_path
       else
         render :edit
       end
     end
+
     def destroy
       @plan.destroy
       redirect_to plans_path
     end
+
     # def confirm
      # @plan = current_user.plans.build(plan_params)
      # render :new if @plan.invalid?
     # end
 
     def take
-      # 該当の投稿とログイン中のユーザーとの中間テーブルのレコードを作成する
       PlanUser.create(plan_id: @plan.id, taker_id: current_user.id)
-      # フラッシュメッセージを表示（フラッシュメッセージを表示させない場合は書かなくて大丈夫です）
       flash[:notice] = '申し込みが完了しました。'
-      # 投稿の詳細ページにリダイレクト
       redirect_to action: "show"
     end
 
     def cancel
-      # 中間テーブルの中から、該当の投稿とログイン中のユーザーによるレコードを抽出する
       plan_taker = PlanUser.find_by(plan_id: @plan.id, taker_id: current_user.id)
       plan_taker.destroy
       flash[:notice] = 'キャンセルが完了しました。'
@@ -78,6 +81,7 @@ class PlansController < ApplicationController
     def plan_params
       params.require(:plan).permit(:title, :content, :start_time, :limit_time, :tag_list)
     end
+    
     def set_plan
      @plan = Plan.find(params[:id])
     end

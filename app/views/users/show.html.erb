@@ -1,9 +1,19 @@
 <h1>about me</h1>
 
+<p>
+  <strong>Image:</strong>
+    <% if @user.image.url.present? %>
+      <%= image_tag @user.image.url %>
+    <% end %>
+</p>
 <h3>ユーザー名</h3>
 <%= @user.name %>
 <h3>メールアドレス</h3>
 <%= @user.email %>
+<h3>ゲームスキル・実績</h3>
+<%= @user.game_skill%>
+<h3>簡単な自己紹介</h3>
+<%= @user.self_profile %>
 
 <h2>ユーザー詳細ページ</h2>
 <p><%= "フォロー数: #{@user.followers.count}" %></p>
@@ -18,3 +28,4 @@
       <%= link_to "show", user_path(user) %>
     </p>
   <% end %>
+<%= link_to 'プロフィールを編集する', edit_user_registration_path(current_user.id) %>

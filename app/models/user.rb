@@ -26,8 +26,11 @@ class User < ApplicationRecord
     has_many :plan_users, foreign_key: "taker_id", dependent: :destroy
 
     #userのバリデーション
-    validates :name, presence: true 
+    validates :name, presence: true, length: { maximum: 30 }
 
     #planとの一体多アソシエーション
     has_many :plans, dependent: :destroy
+
+    #画像アップローダー
+    mount_uploader :image, ImageUploader
 end

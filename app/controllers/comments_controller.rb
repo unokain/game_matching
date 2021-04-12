@@ -1,9 +1,8 @@
 class CommentsController < ApplicationController
   before_action :set_plan, only: [:create, :edit, :update]
+
   def create
-    # Blogをパラメータの値から探し出し,Blogに紐づくcommentsとしてbuildします。
     @comment = @plan.comments.build(comment_params)
-    # クライアント要求に応じてフォーマットを変更
     respond_to do |format|
       if @comment.save
         format.js { render :index }
@@ -12,6 +11,7 @@ class CommentsController < ApplicationController
       end
     end
   end
+
   def edit
     @comment = @plan.comments.find(params[:id])
     respond_to do |format|
@@ -19,6 +19,7 @@ class CommentsController < ApplicationController
       format.js { render :edit }
     end
   end
+
   def update
     @comment = @plan.comments.find(params[:id])
       respond_to do |format|
@@ -31,6 +32,7 @@ class CommentsController < ApplicationController
         end
       end
   end
+
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
@@ -39,11 +41,13 @@ class CommentsController < ApplicationController
       format.js { render :index }
     end
   end
+
   private
   # ストロングパラメーター
   def comment_params
     params.require(:comment).permit(:plan_id, :content)
   end
+  
   def set_plan
     @plan = Plan.find(params[:plan_id])
   end
