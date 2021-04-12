@@ -8,6 +8,9 @@ Rails.application.routes.draw do
       get 'take'
       get 'cancel'
     end
+    collection do
+      post :confirm
+    end
   end
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

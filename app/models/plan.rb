@@ -15,6 +15,6 @@ class Plan < ApplicationRecord
     #バリテーション
     validates :content, presence: true, length: { in: 1..300 }
     validates :title,  presence: true, length: { maximum: 30 }
-    validates :start_limit, presence: true
+    validates :start_time, presence: true
     validates :limit_time, presence: true
 end

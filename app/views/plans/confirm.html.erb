@@ -1,8 +1,9 @@
-
 <h3>以下の内容で、送信する。</h3>
-<%= form_with(model: @plan, url: plans_path, local: true) do |form| %>
+<%= form_with(model: @plan, url: confirm_plans_path, local: true) do |form| %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
+  <%= form.hidden_field :start_time %>
+  <%= form.hidden_field :limit_time %>
   <p>タイトル:<%= @plan.title %></p>
   <p>本文:<%= @plan.content %></p>
   <%= form.submit "投稿する" %>

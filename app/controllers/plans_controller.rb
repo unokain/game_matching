@@ -59,10 +59,10 @@ class PlansController < ApplicationController
       redirect_to plans_path
     end
 
-    # def confirm
-     # @plan = current_user.plans.build(plan_params)
-     # render :new if @plan.invalid?
-    # end
+    def confirm
+      @plan = current_user.plans.build(plan_params)
+      render :new if @plan.invalid?
+    end
 
     def take
       PlanUser.create(plan_id: @plan.id, taker_id: current_user.id)
