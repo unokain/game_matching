@@ -12,7 +12,6 @@
     <p><strong>投稿者</strong>：<%= @plan.user.name %></p>
   </div>
   <div>
-
   <% if @user.id != current_user.id %>
     <% if @plan.taker_ids.include?(current_user.id) %>
       <%= link_to "cansel", cancel_plan_path(@plan.id), data: { confirm: "cancell" } %>
@@ -34,4 +33,5 @@
   <%= render partial: 'comments/form', locals: { comment: @comment, plan: @plan } %>
   <%= link_to '編集', edit_plan_path(@plan) %> |
   <%= link_to '戻る', plans_path %>
+  <%= link_to '削除する', plan_path(@plan.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
 </div>

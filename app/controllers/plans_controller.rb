@@ -3,13 +3,14 @@ class PlansController < ApplicationController
     before_action :authenticate_user!, only: [:new, :edit, :update, :destroy] 
 
     def index
-      if params[:tag]
-        @plans = Plan.tagged_with(params[:tag])
-        @tags = Plan.tag_counts_on(:tags).most_used(20)
-      else
-        @plans = Plan.all 
-        @tags = Plan.tag_counts_on(:tags).most_used(20)
+      if params[:tag].present?
+        @plans = Plan.tagged_with(params[:tag]).order(created_at: :desc)
+      elsif params[:search].present?
+        @plans = Plan.plans_search(params[:search]).limit(20)
+      elsif
+        @plans = Plan.all.order(created_at: :desc)
       end
+      @tags = Plan.tag_counts_on(:tags).most_used(20)
     end
 
     def new

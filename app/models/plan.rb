@@ -17,4 +17,7 @@ class Plan < ApplicationRecord
     validates :title,  presence: true, length: { maximum: 30 }
     validates :start_time, presence: true
     validates :limit_time, presence: true
+
+    #検索用メゾット
+    scope :plans_search, ->(n){where('title LIKE(?)', "%#{n}%")}
 end
