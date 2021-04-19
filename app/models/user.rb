@@ -27,10 +27,18 @@ class User < ApplicationRecord
 
     #userのバリデーション
     validates :name, presence: true, length: { maximum: 30 }
+    validates :game_skill, length: { maximum: 500 }
+    validates :self_profile, length: { maximum: 500 }
 
     #planとの一体多アソシエーション
     has_many :plans, dependent: :destroy
 
+    #commentとの一体多アソシエーション
+    has_many :comments, dependent: :destroy
+
     #画像アップローダー
     mount_uploader :image, ImageUploader
+
+    #検索メゾット
+    scope :search_user, ->(n){where('name LIKE(?)', "%#{n}%")}
 end

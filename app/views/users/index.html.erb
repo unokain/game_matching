@@ -1,10 +1,54 @@
-  <h2>ユーザー</h2>
-  <% @users.each do |user| %>
-    <%= user.name %>
-    <%= user.email %>
-    <%= render 'follow_form', user: user %>
-    <%= link_to '詳細', user_path(user.id) %>
-    <% if current_user.id == user.id%>
-      <%= link_to '編集する', edit_user_registration_path(user.id) %>
+<section class="container"> 
+  <div class="mb-5"> 
+    <h2>ユーザーを探す</h2>
+  </div>
+    <div class="row mt-4">
+      <div class="col-11">
+        <%= form_tag(users_path,:method => 'get') do %>
+        <%= text_field_tag :search_user ,'', class:"form-control" %>
+      </div>
+      <div class="col-1">
+        <%= submit_tag '検索', :name => nil, class:"btn btn-dark mb-2"%>
+      </div>
+      <% end %>
+    </div>
+  <div class="mt-2">
+    <% @users.each do |user| %>
+      <div class="m-2 p-4 account_base rounded border border-left-0">
+        <div class="row">
+      
+          <div class="col-3 font_level_2">
+            <%= link_to "#{user.name}", user_path(user.id), class:"link_underline" %>
+          </div>
+         
+          <div class="col-5">
+            <% if user.self_profile.present?%>
+              <%= user.self_profile.truncate(30) %>
+            <% elsif %>  
+              <span>自己紹介を登録してません</span>
+            <% end %>
+          </div>
+
+          <div class="col-2">
+          <% if user.id != current_user.id%>       
+            <%= render 'follow_form', user: user %>
+          <% end %>
+          </div>
+          <div class="col-1">
+            <% if user.id != current_user.id%> 
+              <% unless current_user.following?(user) %>
+                <i class="fas fa-user-plus"></i>
+              <% else %>
+                <i class="fas fa-user-minus"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
     <% end %>
-  <% end %>
+    <div class="mt-2">
+        <%= paginate @users %>
+    </div>
+ </div>
+</section>

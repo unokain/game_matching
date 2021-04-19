@@ -1,14 +1,14 @@
 class PlansController < ApplicationController
     before_action :set_plan, only: [:show, :edit, :update, :destroy, :take, :cancel ]
-    before_action :authenticate_user!, only: [:new, :edit, :update, :destroy] 
+    before_action :authenticate_user!
 
     def index
       if params[:tag].present?
-        @plans = Plan.tagged_with(params[:tag]).order(created_at: :desc)
+        @plans = Plan.page(params[:page]).per(8).tagged_with(params[:tag]).order(created_at: :desc)
       elsif params[:search].present?
-        @plans = Plan.plans_search(params[:search]).limit(20)
+        @plans = Plan.page(params[:page]).per(8).plans_search(params[:search]).limit(20)
       elsif
-        @plans = Plan.all.order(created_at: :desc)
+        @plans = Plan.page(params[:page]).per(8).all.order(created_at: :desc)
       end
       @tags = Plan.tag_counts_on(:tags).most_used(20)
     end

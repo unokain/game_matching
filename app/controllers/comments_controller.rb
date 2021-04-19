@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
       if @comment.save
         format.js { render :index }
       else
+        binding.pry 
         format.html { redirect_to plan_path(@plan), notice: '投稿できませんでした...' }
       end
     end
@@ -45,7 +46,7 @@ class CommentsController < ApplicationController
   private
   # ストロングパラメーター
   def comment_params
-    params.require(:comment).permit(:plan_id, :content)
+    params.require(:comment).permit(:content).merge(user_id: current_user.id, plan_id: params[:plan_id])
   end
   
   def set_plan

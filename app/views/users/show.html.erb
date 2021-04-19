@@ -1,31 +1,124 @@
-<h1>about me</h1>
+<h1 class="mb-5 mt-4 container">マイページ</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+      <section class="container account_base pt-4 rounded border border-left-0">
+        <div class="row mt-5">
+          <div class="col-3 offset-1">
+            <% if @user.image.url.present? %>
+              <%= image_tag @user.image.url, class:"img_c" %>
+            <% end %>
+          </div>
+          <div class="col-7">
+            <div>
+              <h5>ユーザー名</h5>
+              <div class="font_level_2 turn_text">
+                <%= @user.name %>
+              </div>
+            </div>
+            <div class="mt-4">
+              <% if @user.id == current_user.id %>
+                <h5>メールアドレス</h5>
+                <%= @user.email %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row mt-5">
+          <div class="offset-1 col-3">
+            <h5>ゲームスキル・実績</h5>
+          </div>
+          <div class="col-7 turn_text">
+            <span><%= @user.game_skill%></span>
+          </div>
+        </div>
 
-<p>
-  <strong>Image:</strong>
-    <% if @user.image.url.present? %>
-      <%= image_tag @user.image.url %>
-    <% end %>
-</p>
-<h3>ユーザー名</h3>
-<%= @user.name %>
-<h3>メールアドレス</h3>
-<%= @user.email %>
-<h3>ゲームスキル・実績</h3>
-<%= @user.game_skill%>
-<h3>簡単な自己紹介</h3>
-<%= @user.self_profile %>
+        <div class="row mt-5">
+          <div class="offset-1 col-3">
+            <h5>簡単な自己紹介</h5>
+          </div>
+          <div class="col-7 turn_text">
+            <span><%= @user.self_profile %></span>
+          </div>
+        </div>
+        <div class="mt-5 mr-5 text-right pb-4">
+          <% if @user.id == current_user.id %>
+            <%= link_to 'プロフィールを編集', edit_user_registration_path(current_user.id), class:"btn btn-dark mb-2 rounded-pill" %>
+          <% end %>
+        </div>
+      </section>
 
-<h2>ユーザー詳細ページ</h2>
-<p><%= "フォロー数: #{@user.followers.count}" %></p>
-<p><%= "フォロワー数: #{@user.following.count}" %></p>
-<p></p>
+      <section class="container mt-4 pt-3">
+        <div>
+          <h4><%= @user.name%>さんが企画したプラン</h4>
+        </div>
+        <div class="row">
+          <% @plans.each do |plan| %>
+            <div class="col-5 plan_details mt-1 pt-3 pb-3 rounded border border-left-0">
+              <div class="">
+                <%= link_to "#{plan.title.truncate(20)}", plan_path(plan.id),class:"text-dark link_underline font-weight-bold" %>
+              </div>
+              <hr>
+              <div class="small mt-2">
+                <%= plan.content.truncate(50) %>
+              </div>
+              <div class="mt-2">
+                <%= raw(plan.tag_list.map { |t| link_to t, tag_path(t),class:"tag_custam rounded p-1 link_underline"}.join(' ')) %></span>
+              </div>
+              <div class="mt-2 row">
+                <div class="col-6">
+                  <div>
+                    <span class="small">投稿者:<%= plan.user.name%></span>
+                  </div>
+                  <div class="small">
+                    <span>スタート日&nbsp;：<%= plan.start_time.strftime("%Y.%m.%d") %></span>
+                  </div>
+                  <div class="small">
+                    <span>投稿日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<%= plan.created_at.strftime("%Y.%m.%d") %><span>
+                  </div>
+                </div>
+                <div class="small mx-auto">
+                  <span>参加者数予定：</span>
+                  <%= plan.plan_users.length %>
+                  <span>人</span>
+                </div>
+            </div>
+          </div>
+          <div class="col-1">
+            <div>&nbsp;</div>
+          </div>
+          <% end %>
+        </div>
+      </section>
+    </div>
 
-<h3>フォロー一覧</h3>
-  <% @user.following.where.not(id: current_user.id).each do |user| %>
-    <p>
-      <%= "email: #{user.email}" %>
-      <%= render 'follow_form', user: user %>
-      <%= link_to "show", user_path(user) %>
-    </p>
-  <% end %>
-<%= link_to 'プロフィールを編集する', edit_user_registration_path(current_user.id) %>
+    <div class="col-3 account_base rounded border border-left-0">
+      <div class="pt-4">
+      <h4>ユーザー詳細ページ</h4>
+        <div class="user_show mt-3">
+          <ul>
+            <li><%= "フォロー　　　 #{@user.followers.count}人" %></li>
+            <li><%= "フォロワー 　　#{@user.following.count}人" %></li>
+          </ul>
+        </div>
+
+        <div class="mt-5 pt-5">
+          <h4>フォロー一覧</h4>
+        </div>
+        <% @user.following.where.not(id: current_user.id).each do |user| %>
+        <hr>
+          <div class="row pt-3">
+            <div class="col-5">
+              <p><%= link_to "#{user.name}", user_path(user.id), class:"link_underline" %></p>
+            </div>
+            <div class="col-7">
+              <%= render 'follow_form', user: user %>
+            </div>
+          </div>
+        <% end %>  
+
+      </div>      
+    </div>
+  </div>
+</div>

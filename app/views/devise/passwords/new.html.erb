@@ -1,16 +1,27 @@
-<h2><%= t('.forgot_your_password') %></h2>
+<section class="container">
+  <div class="max-size-signup mx-auto account_base p-5 rounded border border-left-0">
+    <div class="text-center">
+      <h3><%= t('.forgot_your_password') %></h3>
+    </div>
+    <hr>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <div>
+       <p>入力していただいたメールアドレス宛に再設定のご案内メールが届きます。</p>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control mb-5" %>
+      </div>
+
+      <div class="actions text-center">
+        <%= f.submit t('.send_me_reset_password_instructions'),class:"btn btn-dark mb-2 rounded-pill" %>
+      </div>
+    <% end %>
+
+    <div class="mt-5">
+     <%= render "devise/shared/links" %>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit t('.send_me_reset_password_instructions') %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</section>

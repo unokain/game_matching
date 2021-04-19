@@ -9,27 +9,34 @@
       </ul>
     </div>
   <% end %>
-  <div class="plan_title">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="field plan_title">
+    <%= form.label :タイトル, class: "control-label" %>
+    <%= form.text_field :title, class: "form-control" %>
   </div>
-  <div class="plan_title">
-    <%= form.label :content %>
-    <%= form.text_field :content %>
-  </div>
-  <div>
-    <%= form.label :start_time %>
-    <%= form.text_field :start_time %>
-  </div>
-  <div>
-    <%= form.label :limit_time %>
-    <%= form.text_field :limit_time %>
-  </div>
-  <div class="form-group">
-    <%= form.label :plan, :tag_list %>
+
+  <div class="field form-group">
+    <%= form.label :plan, :タグ %>
     <%= form.text_field :tag_list, value: @plan.tag_list.join(','), class: "form-control" %>
   </div>
-  <div class="actions">
-  <%= form.submit %>
+
+  <div class="row">
+    <div class="field col-6">
+      <%= form.label :イベント開始日時：, class: "control-label" %>
+      <%= form.date_select :start_time, class: "form-control"  %>
+    </div>
+
+    <div class="field col-6">
+      <%= form.label :申し込み期限：, class: "control-label" %>
+      <%= form.date_select :limit_time, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="field plan_title">
+    <%= form.label :記事, class: "control-label" %>
+    <%= form.text_area :content, size: "20x10", class: "form-control" %>
+  </div>
+
+  <div class="actions text-right mt-2">
+    <%= form.submit '投稿する', class: "btn btn-dark mb-2" %>
+  </div>
 <% end %>
-<%= link_to "一覧画面にもどる", plans_path %>

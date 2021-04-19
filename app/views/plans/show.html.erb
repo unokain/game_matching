@@ -1,37 +1,121 @@
-
-<h3>ブログ詳細画面</h3>
+<div class="mt-2 mb-3 text-center">
+</div>
 
 <div class="container">
-    <% @tags.each do |tag| %> 
-      <%= tag.name %>
-    <% end %>
+  <div class="row">
+    <div class="col-9"> 
 
-  <div class="plan-text">
-    <p><strong>タイトル</strong>：<%= @plan.title %></p>
-    <p><strong>内容</strong>：<%= @plan.content %></p>
-    <p><strong>投稿者</strong>：<%= @plan.user.name %></p>
-  </div>
-  <div>
-  <% if @user.id != current_user.id %>
-    <% if @plan.taker_ids.include?(current_user.id) %>
-      <%= link_to "cansel", cancel_plan_path(@plan.id), data: { confirm: "cancell" } %>
-    <% else %>
-      <%= link_to "offer", take_plan_path(@plan.id), data: { confirm: "offer?" } %>
-    <% end %>
-  <% end %>
+      <section class="container account_base pt-4 rounded border border-left-0">
+        <hr>
+        <div class="row">
+          <div class="col-3 mt-2 mb-4 col-11 offset-1">
+            <h2><%= @plan.title %></h2> 
+          </div>
+        </div>
 
-  <p>参加者</p>
-  <% @plan_user.each do |user| %>
-    <p><%= user.name %></p>
-  <% end %>
+        <div class="row">
+          <div class="col-3 offset-1">
+            投稿者：<%= link_to "#{@user.name}", user_path(@user) %>
+          </div>
+          <div class="col-8">
+            <% @tags.each do |tag| %> 
+              タグ：<%= link_to "#{tag.name}(#{tag.taggings_count})", tag_path(tag.name),class:"tag_custam_show rounded p-1 m-1 link_underline"%>
+            <% end %>
+          </div>
+        </div>
 
+        <div class="row">
+          <div class="plan-text col-10 offset-1 mt-5">
+            <h4>プラン内容</h4>
+            <hr>
+            <p><%= @plan.content %></p>
+          </div>
+          <div class="col-1">
+          </div>
+        </div>
+
+        <div class="row no-gutters">
+          <div class="col-1 offset-9 text-center">
+            <% if @user.id == current_user.id %>
+              <%= link_to '編集', edit_plan_path(@plan), class:"btn btn-dark mb-2 font_small" %> 
+            <% end %>
+          </div>
+          <div class="col-1 text-center">
+            <% if @user.id == current_user.id %>
+              <%= link_to '削除', plan_path(@plan.id), method: :delete, class:"btn btn-danger mb-2 font_small" , data: { confirm: '本当に削除していいですか？' } %></td>
+            <% end %>
+          </div>
+          <div class="col-1">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="text-right mt-2 small col-3 offset-8">
+            <p>作成日時<%= @plan.created_at.strftime("%Y.%m.%d  %H:%M") %></p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-2 offset-10">
+            <%= link_to '戻る', plans_path %>
+          </div>
+        </div>
+      
+
+        <div class="text-center mt-5 mb-5">
+          <div>コメント一覧</div>
+        </div>
+
+        <div class="row">
+          <div id="comments_area" class="col-10 offset-1" >
+            <%= render partial: 'comments/index', locals: { comments: @comments, plan: @plan } %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-10 offset-1">
+            <%= render partial: 'comments/form', locals: { comment: @comment, plan: @plan } %>
+          </div>
+        </div>
+      </section>
+    </div>
+    
+    <div class="col-3">
+
+      <section class="container account_base rounded border border-left-0"> 
+        <p class="pt-3">プラン詳細情報</p>
+        <div class="row pt-2">
+          <div class="col-12">
+           立案者：<%= link_to "#{@user.name}", user_path(@user) %>
+          </div>
+        </div>
+
+        <div class="row mt-4 mb-4">
+          <div class="col-12">
+            <% if @user.id != current_user.id %>
+              <% if @plan.taker_ids.include?(current_user.id) %>
+                <%= link_to "キャンセルする", cancel_plan_path(@plan.id), class:"btn btn-dark mb-2 font_small font_small", data: { confirm: "キャンセルしますか" } %>
+              <% else %>
+                <%= link_to "申し込む", take_plan_path(@plan.id), class:"btn btn-dark mb-2 font_small font_small", data: { confirm: "申し込みますか" } %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row">
+          </div class="col-12">
+            <div>参加予定メンバー</div>
+            <% @plan_user.each do |user| %>
+              <%= link_to "#{user.name}さん", user_path(user) %>
+            <% end %>
+
+            <div class="pb-5">
+              <div class="mt-4">イベント開催時間</div>
+              <%= @plan.start_time.strftime("%Y.%m.%d %H時%M分") %>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
-  <p>コメント一覧</p>
-  <div id="comments_area">
-    <%= render partial: 'comments/index', locals: { comments: @comments, plan: @plan } %>
-  </div>
-  <%= render partial: 'comments/form', locals: { comment: @comment, plan: @plan } %>
-  <%= link_to '編集', edit_plan_path(@plan) %> |
-  <%= link_to '戻る', plans_path %>
-  <%= link_to '削除する', plan_path(@plan.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
 </div>

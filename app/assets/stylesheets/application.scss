@@ -12,6 +12,7 @@
  *
  */
 @import "bootstrap";
+@import "font-awesome";
 
 @import url('https://fonts.googleapis.com/css?family=Varela+Round');
 
@@ -161,6 +162,7 @@ input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     margin-top: -9px;
 }
 
+
 header ul li{
     list-style: none;
     display: inline;
@@ -168,11 +170,60 @@ header ul li{
 .link_underline{ 
     text-decoration: none!important 
 }
-.plan_details{
+section div .plan_details{
     background-color: #fff;
 }
-.tag_custam{
+section div .tag_custam{
     color:rgba(58,61,86,1);
     background-color: #f1f1f1;
     font-size: 0.7rem;
+}
+.field label{
+    margin-bottom: 0!important;
+    margin-top: 1rem;
+}
+.max-size-signup{
+    width: 500px;
+}
+// @media (max-width: 1024px) {
+//     .max-size-signup{
+//         width: 100%;
+//     }
+// }
+.font_level_3{
+    font-size: 3rem;
+}
+.font_level_2{
+    font-size: 1.5rem;
+}   
+.account_base{
+    background-color: #fff;
+}
+.checkbox_display{
+    display: inline!important;
+}
+.tag_custam_show{
+    color:rgba(58,61,86,1);
+    background-color: #f1f1f1;
+    font-size: 1rem;
+}
+.plan-text{
+    min-height: 200px;
+}
+.list_comment{
+    list-style: none;
+}
+section div .font_small{
+    font-size:0.5rem;
+}
+.img_c{
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;    
+}
+.turn_text{
+    word-wrap: break-word;
+}
+.user_show ul li {
+    list-style: none;
 }
