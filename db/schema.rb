@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_16_092833) do
+ActiveRecord::Schema.define(version: 2021_04_20_094714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 2021_04_16_092833) do
   end
 
   create_table "plan_users", force: :cascade do |t|
-    t.bigint "plan_id"
-    t.bigint "taker_id"
+    t.bigint "plan_id", null: false
+    t.bigint "taker_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["plan_id"], name: "index_plan_users_on_plan_id"
@@ -35,10 +35,10 @@ ActiveRecord::Schema.define(version: 2021_04_16_092833) do
   end
 
   create_table "plans", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.datetime "start_time"
-    t.datetime "limit_time"
+    t.string "title", null: false
+    t.text "content", null: false
+    t.datetime "start_time", null: false
+    t.datetime "limit_time", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(version: 2021_04_16_092833) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followed_id"
+    t.integer "follower_id", null: false
+    t.integer "followed_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 2021_04_16_092833) do
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
     t.string "image"
-    t.string "name"
+    t.string "name", null: false
     t.text "game_skill"
     t.text "self_profile"
     t.index ["email"], name: "index_users_on_email", unique: true

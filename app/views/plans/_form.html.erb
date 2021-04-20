@@ -21,13 +21,13 @@
 
   <div class="row">
     <div class="field col-6">
-      <%= form.label :イベント開始日時：, class: "control-label" %>
-      <%= form.date_select :start_time, class: "form-control"  %>
+      <%= form.label :申し込み期限, class: "control-label" %>
+      <%= form.datetime_field :limit_time, class: "form-control" %>
     </div>
 
     <div class="field col-6">
-      <%= form.label :申し込み期限：, class: "control-label" %>
-      <%= form.date_select :limit_time, class: "form-control" %>
+      <%= form.label :イベント開始日時, class: "control-label" %>
+      <%= form.datetime_field :start_time, class: "form-control"  %>
     </div>
   </div>
 

@@ -7,7 +7,6 @@ class CommentsController < ApplicationController
       if @comment.save
         format.js { render :index }
       else
-        binding.pry 
         format.html { redirect_to plan_path(@plan), notice: '投稿できませんでした...' }
       end
     end

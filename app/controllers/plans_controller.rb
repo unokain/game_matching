@@ -1,12 +1,15 @@
 class PlansController < ApplicationController
     before_action :set_plan, only: [:show, :edit, :update, :destroy, :take, :cancel ]
     before_action :authenticate_user!
+    before_action :ensure_current_user_plan, {only: [:edit, :update, :destroy]}
 
     def index
       if params[:tag].present?
         @plans = Plan.page(params[:page]).per(8).tagged_with(params[:tag]).order(created_at: :desc)
       elsif params[:search].present?
         @plans = Plan.page(params[:page]).per(8).plans_search(params[:search]).limit(20)
+      elsif params[:sort_start].present?
+        @plans = Plan.page(params[:page]).per(8).sort_start
       elsif
         @plans = Plan.page(params[:page]).per(8).all.order(created_at: :desc)
       end
@@ -86,4 +89,27 @@ class PlansController < ApplicationController
     def set_plan
      @plan = Plan.find(params[:id])
     end
+
+    def ensure_current_user_plan
+      if current_user.id != @plan.user_id
+        flash[:notice]="権限がありません"
+        redirect_to plans_path
+      end
+    end
+
+  #   def time_limit_divide
+  #     plan_array = Plan.new
+  #     time = Time.now
+  #     array_plan_limit=[]
+  #     array_plan_unlimit=[]
+  #     plan_array.each do |plan|
+  #         if @time >= plan[:limit_time]
+  #             array_plan_limit << plan
+  #         else
+  #             array_plan_unlimit << plan
+  #         end
+  #     end
+  #     array_plan_unlimit << array_plan_limit
+  #     @plans = array_plan_unlimit.flatten!
+  # end
 end

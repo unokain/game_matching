@@ -1,15 +1,36 @@
 <section class="container">
   <div class="row">
-    <div class="col-10">
+    <div class="col-12 col-lg-10">
 
       <div class="row">
-        <div class="col-9">
+        <div class="col-6">
           <h3>新着プラン一覧</h3>
+        </div>
+        <div class="col-4  offset-2">
+          <%= link_to 'プランを投稿する', new_plan_path,class:"text-white btn btn-dark btn-block rounded-pill  max-size" %>
+        </div>
+      </div>
+
+      <div class="d-block d-lg-none">
+        <div class="col-12">
+          <div class="row plan_details p-2 rounded border border-left-0 mt-5" >
+          <p>人気のタグ</p>
+            <div>
+              <% @tags.each do |tag| %> 
+                <%= link_to "#{tag.name}(#{tag.taggings_count})", tag_path(tag.name),class:"tag_custam rounded p-1 m-1 link_underline"%> 
+              <% end %> 
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <%= link_to "終了期限", plans_path(sort_start: "true") %>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="row mt-4">
-        <div class="col-10">
+        <div class=" col-12 col-lg-10">
           <%= form_tag(plans_path,:method => 'get') do %>
           <%= text_field_tag :search ,'', class:"form-control" %>
         </div>
@@ -21,39 +42,50 @@
 
       <div class="row mt-3">
         <% @plans.each do |plan| %>
-        <div class="col-5 plan_details mt-4 pt-3 pb-3 rounded border border-left-0">
-            <div class="">
-              <%= link_to "#{plan.title.truncate(20)}", plan_path(plan.id),class:"text-dark link_underline font-weight-bold" %>
-            </div>
-            <hr>
-            <div class="small mt-2">
-              <%= plan.content.truncate(50) %>
-            </div>
-            <div class="mt-2">
-              <%= raw(plan.tag_list.map { |t| link_to t, tag_path(t),class:"tag_custam rounded p-1 link_underline"}.join(' ')) %></span>
-            </div>
-            <div class="mt-2 row">
-              <div class="col-6">
-                <div>
-                  <span class="small">投稿者:<%= plan.user.name%></span>
-                </div>
-                <div class="small">
-                  <span>スタート日&nbsp;：<%= plan.start_time.strftime("%Y.%m.%d") %></span>
-                </div>
-                <div class="small">
-                  <span>投稿日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<%= plan.created_at.strftime("%Y.%m.%d") %><span>
-                </div>
+          <div class="col-12 col-lg-5 plan_details mt-4 pt-3 pb-3 rounded border border-left-0">
+              <div class="">
+                <%= link_to "#{plan.title.truncate(20)}", plan_path(plan.id),class:"text-dark link_underline font-weight-bold" %>
               </div>
-              <div class="small mx-auto">
-                <span>参加者数予定：</span>
-                <%= plan.plan_users.length %>
-                <span>人</span>
+              <hr>
+              <div class="small mt-2">
+                <%= plan.content.truncate(50) %>
               </div>
+              <div class="mt-2">
+                <%= raw(plan.tag_list.map { |t| link_to t, tag_path(t),class:"tag_custam rounded p-1 link_underline"}.join(' ')) %></span>
+              </div>
+            
+              <div class="mt-2 row">
+                <div class="col-6">
+                  <div>
+                    <span class="small">投稿者:<%= plan.user.name%></span>
+                  </div>
+                  <div class="small">
+                    <span>スタート日&nbsp;：<%= plan.start_time.strftime("%Y.%m.%d") %></span>
+                  </div>
+                  <div class="small">
+                    <span>申し込み期限&nbsp;：<%= plan.limit_time.strftime("%Y.%m.%d") %></span>
+                  </div>
+                  <div class="small">
+                    <span>投稿日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<%= plan.created_at.strftime("%Y.%m.%d") %><span>
+                  </div>
+                </div>
+                <div class="small mx-auto">
+                  <span>参加者数予定：</span>
+                  <%= plan.plan_users.length %>
+                  <span>人</span>
+                </div>
+                <div class="mx-auto mt-3">
+                  <% if Time.now >= plan[:limit_time]%>
+                    <p class="">申し込み期間終了</p>
+                  <% end %>
+                </div>
+            </div>
           </div>
-        </div>
-        <div class="col-1">
-          <div>&nbsp;</div>
-        </div>
+          <div class="d-none d-lg-block">
+            <div class="col-1">
+              <div>&nbsp;</div>
+            </div>
+          </div>
         <% end %>
       </div>
       <div class="mt-2">
@@ -61,27 +93,32 @@
       </div>
     </div>
 
-    <div class="col-2">
-      <div class="row mt-5">
-        <div class="col-12">
-          <%= link_to 'プランを企画', new_plan_path,class:"text-white btn btn-dark btn-block rounded-pill" %>
+  
+    <div class="col-lg-2">
+      <div class="d-none d-lg-block">
+        <div class="row mt-5">
+        </div>
+        <div class="row plan_details p-2 rounded border border-left-0 mt-5" >
+        <p>人気のタグ</p>
+          <div>
+            <% @tags.each do |tag| %> 
+              <%= link_to "#{tag.name}(#{tag.taggings_count})", tag_path(tag.name),class:"tag_custam rounded p-1 m-1 link_underline"%> 
+            <% end %> 
+          </div>
+          <div class="mt-4">
+            <p>タグ検索</p>
+            <%= form_tag(plans_path,:method => 'get') do %>
+              <%= text_field_tag :tag ,'', class:"form-control" %>
+            <%= submit_tag '検索', :name => nil, class:"btn btn-dark mb-2 mt-2"%>
+          </div>
+          <% end %>    
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <%= link_to "終了期限", plans_path(sort_start: "true") %>
+          </div>
         </div>
       </div>
-      <div class="row plan_details p-2 rounded border border-left-0 mt-5" >
-      <p>人気のタグ</p>
-        <div>
-          <% @tags.each do |tag| %> 
-            <%= link_to "#{tag.name}(#{tag.taggings_count})", tag_path(tag.name),class:"tag_custam rounded p-1 m-1 link_underline"%> 
-          <% end %> 
-        </div>
-        <div>
-          <p>タグ検索</p>
-          <%= form_tag(plans_path,:method => 'get') do %>
-            <%= text_field_tag :tag ,'', class:"form-control" %>
-          <%= submit_tag '検索', :name => nil, class:"btn btn-dark mb-2 mt-2"%>
-        </div>
-        <% end %>    
-        </div>
     </div>
   </div>
-  </section>
+</section>
