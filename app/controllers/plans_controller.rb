@@ -7,11 +7,11 @@ class PlansController < ApplicationController
       if params[:tag].present?
         @plans = Plan.page(params[:page]).per(8).tagged_with(params[:tag]).order(created_at: :desc)
       elsif params[:search].present?
-        @plans = Plan.page(params[:page]).per(8).plans_search(params[:search]).limit(20)
+        @plans = Plan.plans_search(params[:search]).page(params[:page]).per(8).limit(20)
       elsif params[:sort_start].present?
-        @plans = Plan.page(params[:page]).per(8).sort_start
+        @plans = Plan.sort_start.page(params[:page]).per(8)
       elsif
-        @plans = Plan.page(params[:page]).per(8).all.order(created_at: :desc)
+        @plans = Plan.all.order(created_at: :desc).page(params[:page]).per(8)
       end
       @tags = Plan.tag_counts_on(:tags).most_used(20)
     end
@@ -71,6 +71,7 @@ class PlansController < ApplicationController
     def take
       PlanUser.create(plan_id: @plan.id, taker_id: current_user.id)
       flash[:notice] = '申し込みが完了しました。'
+      InformationMailer.information_mail(@plan).deliver 
       redirect_to action: "show"
     end
 
