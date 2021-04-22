@@ -15,8 +15,11 @@
     <header>
       <div class="header">
         <div>
-          <ul class="mt-3 ml-3">
-            <li><%= link_to "ゲームマッチング（仮）", plans_path, class:"text-white link_underline" %></li>
+          <ul class="mt-3 ml-3 ">
+            <li><%= link_to "ゲームマッチング（仮）", plans_path, class:"text-white link_underline header_left" %></li>
+            <% if user_signed_in? %>
+              <li><%= link_to "マイページ", user_path(current_user.id), class:"text-white link_underline mr-3 right" %></li>
+            <% end %>
           </ul>
         </div>
       </div>
@@ -35,7 +38,6 @@
           <li><%= link_to "ホーム", plans_path %></li>
           <li><%= link_to 'ユーザー一覧', users_path %></li>
           <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-          <li><%= link_to "マイページ", user_path(current_user.id) %></li>
         <% else %>
           <li><%= link_to "新規登録", new_user_registration_path %></li>
           <li><%= link_to "ログイン", new_user_session_path %></li>

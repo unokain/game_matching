@@ -130,9 +130,9 @@
             <div class="col-12">
               <% if @user.id != current_user.id %>
                 <% if @plan.taker_ids.include?(current_user.id) %>
-                  <%= link_to "キャンセルする", cancel_plan_path(@plan.id), class:"btn btn-dark mb-2 font_small font_small", data: { confirm: "キャンセルしますか" } %>
+                  <%= link_to "キャンセルする", cancel_plan_path(@plan.id), class:"btn btn-dark mb-2", data: { confirm: "キャンセルしますか" } %>
                 <% else %>
-                  <%= link_to "申し込む", take_plan_path(@plan.id), class:"btn btn-dark mb-2 font_small font_small", data: { confirm: "申し込みますか" } %>
+                  <%= link_to "申し込む", take_plan_path(@plan.id), class:"btn btn-dark mb-2", data: { confirm: "申し込みますか" } %>
                 <% end %>
               <% end %>
             </div>
