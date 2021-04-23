@@ -77,7 +77,7 @@ gem 'cancancan'
 gem 'pry-rails'
 gem 'acts-as-taggable-on'
 gem 'carrierwave'
-gem 'rmagick'
+gem 'mini_magick'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'webpacker', '~> 4.0'
@@ -86,7 +86,7 @@ gem 'font-awesome-rails'
 gem 'faker'
 gem 'fog-aws'
 gem 'dotenv-rails'
-gem 'unicorn' # アプリケーションサーバのunicorn
-gem 'mini_racer', platforms: :ruby # デプロイ時に必要
+gem 'unicorn' 
+gem 'mini_racer', platforms: :ruby 
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
