@@ -39,11 +39,9 @@ class PlansController < ApplicationController
     end
 
     def show
-    #   @plan = Plan.find(params[:id])
       @comments = @plan.comments
       @comment = @plan.comments.build
       @tags = @plan.tag_counts_on(:tags)
-      @user = @plan.user
       @plan_user = @plan.takers
     end
 

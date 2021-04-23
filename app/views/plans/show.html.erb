@@ -11,11 +11,11 @@
           <h4 class="pt-3">プラン詳細情報</h4>
           <div class="row pt-2">
             <div class="col-6">
-             立案者：<%= link_to "#{@user.name}", user_path(@user) %>
+             立案者：<%= link_to "#{@plan.user.name}", user_path(@plan.user) %>
             </div>
 
             <div class="col-6">
-              <% if @user.id != current_user.id %>
+              <% if @plan.user.id != current_user.id %>
                 <% if @plan.taker_ids.include?(current_user.id) %>
                   <%= link_to "キャンセルする", cancel_plan_path(@plan.id), class:"btn btn-dark mb-2 font_small font_small", data: { confirm: "キャンセルしますか" } %>
                 <% else %>
@@ -51,11 +51,11 @@
 
         <div class="row">
           <div class="col-3 offset-1">
-            投稿者：<%= link_to "#{@user.name}", user_path(@user) %>
+            投稿者：<%= link_to "#{@plan.user.name}", user_path(@plan.user) %>
           </div>
-          <div class="col-8">
+          <div class="col-8">タグ：
             <% @tags.each do |tag| %> 
-              タグ：<%= link_to "#{tag.name}(#{tag.taggings_count})", tag_path(tag.name),class:"tag_custam_show rounded p-1 m-1 link_underline"%>
+              <%= link_to "#{tag.name}(#{tag.taggings_count})", tag_path(tag.name),class:"tag_custam_show rounded p-1 m-1 link_underline"%>
             <% end %>
           </div>
         </div>
@@ -72,12 +72,12 @@
 
         <div class="row no-gutters">
           <div class="col-1 offset-9 text-center">
-            <% if @user.id == current_user.id %>
+            <% if @plan.user.id == current_user.id %>
               <%= link_to '編集', edit_plan_path(@plan), class:"btn btn-dark mb-2 font_small" %> 
             <% end %>
           </div>
           <div class="col-1 text-center">
-            <% if @user.id == current_user.id %>
+            <% if @plan.user.id == current_user.id %>
               <%= link_to '削除', plan_path(@plan.id), method: :delete, class:"btn btn-danger mb-2 font_small" , data: { confirm: '本当に削除していいですか？' } %></td>
             <% end %>
           </div>
@@ -122,13 +122,13 @@
           <p class="pt-3">プラン詳細情報</p>
           <div class="row pt-2">
             <div class="col-12">
-            立案者：<%= link_to "#{@user.name}", user_path(@user) %>
+            立案者：<%= link_to "#{@plan.user.name}", user_path(@plan.user) %>
             </div>
           </div>
 
           <div class="row mt-4 mb-4">
             <div class="col-12">
-              <% if @user.id != current_user.id %>
+              <% if @plan.user.id != current_user.id %>
                 <% if @plan.taker_ids.include?(current_user.id) %>
                   <%= link_to "キャンセルする", cancel_plan_path(@plan.id), class:"btn btn-dark mb-2", data: { confirm: "キャンセルしますか" } %>
                 <% else %>
