@@ -56,6 +56,7 @@ GEM
     autoprefixer-rails (10.2.4.0)
       execjs
     bcrypt (3.1.16)
+    bcrypt_pbkdf (1.1.0)
     bindex (0.8.1)
     bootsnap (1.7.3)
       msgpack (~> 1.0)
@@ -123,6 +124,7 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
+    ed25519 (1.2.4)
     erubi (1.10.0)
     excon (0.80.1)
     execjs (2.7.0)
@@ -390,6 +392,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  bcrypt_pbkdf
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.3.1)
   byebug
@@ -405,6 +408,7 @@ DEPENDENCIES
   devise
   devise-i18n
   dotenv-rails
+  ed25519
   factory_bot_rails
   faker
   fog-aws
