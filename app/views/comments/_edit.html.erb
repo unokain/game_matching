@@ -10,10 +10,9 @@
     </div>
   <% end %>
   <div class="field">
-    <%= form.text_area :content, id: "comment_content_#{plan.id}" %>
-    <%= form.label :content %>
+    <%= form.text_area :content, id: "comment_content_#{plan.id}", class: "form-control" %>
   </div>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit '編集する', class: "btn btn-dark mb-2"  %>
   </div>
 <% end %>
