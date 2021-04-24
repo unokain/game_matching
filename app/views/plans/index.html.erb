@@ -72,7 +72,7 @@
                   <span>人</span>
                 </div>
                 <div class="mx-auto mt-3">
-                  <% if Time.now >= plan[:limit_time]%>
+                  <% if Time.parse(plan.limit_time.strftime("%Y-%m-%d %H:%M")) < Time.now %>
                     <p class="">申し込み期間終了</p>
                   <% end %>
                 </div>
