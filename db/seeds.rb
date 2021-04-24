@@ -14,15 +14,10 @@ require 'faker'
             title: Faker::Games::Pokemon.name,
             content: Faker::Lorem.paragraphs,
             start_time: Time.now + ((3600*12)*(n+1)),
-            limit_time: Time.now + ((3600*12)*(n+2)),
+            limit_time: Time.now + ((3600*12)*(n)),
             )
     end
 end
-
-
-
-
-
 
 # Plan.all.each do |plan|
 #     plan.tag_list(Faker::Color.color_name)    
