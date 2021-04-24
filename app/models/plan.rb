@@ -21,11 +21,15 @@ class Plan < ApplicationRecord
     validate :start_check
       
     def start_limit_check
-        errors.add(:limit_time, "は開始時刻より遅い時間を選択してください") if self.start_time < self.limit_time
+        if limit_time.present?
+          errors.add(:limit_time, "は開始日時より前の時間を選択してください") if self.start_time < self.limit_time
+        end
     end
 
     def start_check
-        errors.add(:start_time, "は現在の日時より遅い時間を選択してください") if self.start_time < Time.now
+        if start_time.present?
+          errors.add(:start_time, "は現在の日時より後の時間を選択してください") if self.start_time < Time.now
+        end
     end
 
     #検索用メゾット

@@ -15,7 +15,7 @@
             </div>
 
             <div class="col-6">
-              <% if @plan.user.id != current_user.id %>
+              <% if @plan.user.id != current_user.id || self.limit_time < Time.now %>
                 <% if @plan.taker_ids.include?(current_user.id) %>
                   <%= link_to "キャンセルする", cancel_plan_path(@plan.id), class:"btn btn-dark mb-2 font_small font_small", data: { confirm: "キャンセルしますか" } %>
                 <% else %>

@@ -16,7 +16,7 @@
 
   <div class="field form-group">
     <%= form.label :plan, :タグ %>
-    <%= form.text_field :tag_list, value: @plan.tag_list.join(','), class: "form-control" %>
+    <%= form.text_field :tag_list, value: @plan.tag_list.join(','),:placeholder => "「,」で区切ると複数のタグを作れます", class: "form-control" %>
   </div>
 
   <div class="row">
@@ -32,7 +32,7 @@
   </div>
 
   <div class="field plan_title">
-    <%= form.label :記事, class: "control-label" %>
+    <%= form.label :content, class: "control-label" %>
     <%= form.text_area :content, size: "20x10", class: "form-control" %>
   </div>
 

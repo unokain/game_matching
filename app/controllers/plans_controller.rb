@@ -69,7 +69,7 @@ class PlansController < ApplicationController
     def take
       PlanUser.create(plan_id: @plan.id, taker_id: current_user.id)
       flash[:notice] = '申し込みが完了しました。'
-      InformationMailer.information_mail(@plan).deliver 
+      # InformationMailer.information_mail(@plan).deliver 
       redirect_to action: "show"
     end
 

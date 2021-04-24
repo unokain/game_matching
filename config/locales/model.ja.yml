@@ -1,0 +1,11 @@
+
+ja: 
+  activerecord:
+    models:
+      plan: イベント
+    attributes:
+      plan:
+        title: タイトル
+        content: プラン内容
+        start_time: 開始日時
+        limit_time: 申し込み期間
