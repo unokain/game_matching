@@ -4,12 +4,14 @@ class ImageUploader < CarrierWave::Uploader::Base
    # 保存形式の設定。他に使うものとしてはfog形式などがある。
   storage :fog
   process :resize_to_limit => [300, 300] # 画像サイズの調整
-  def size_range
-    1..10.megabytes
-  end
   # 画像ファイルの保存先の設定
   # 保存先を指定するには `store_dir` というメソッドに定義します。
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
+
+  def extension_white_list
+    %w(jpg jpeg gif png)
+  end
+
 end

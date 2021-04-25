@@ -88,4 +88,4 @@ gem 'mini_racer', platforms: :ruby
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
 gem 'carrierwave'
-gem 'mimemagic', '0.3.7'
+gem 'mini_magick'
