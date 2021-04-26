@@ -19,9 +19,10 @@ class Plan < ApplicationRecord
     validates :limit_time, presence: true
     validate :start_limit_check
     validate :start_check
+    validate :limit_check
       
     def start_limit_check
-        if limit_time.present?
+        if limit_time.present? && start_time.present?
           errors.add(:limit_time, "は開始日時より前の時間を選択してください") if self.start_time < self.limit_time
         end
     end
@@ -31,6 +32,12 @@ class Plan < ApplicationRecord
           errors.add(:start_time, "は現在の日時より後の時間を選択してください") if self.start_time < Time.now
         end
     end
+
+    def limit_check
+      if limit_time.present?
+        errors.add(:limit_time, "は現在の日時より後の時間を選択してください") if self.limit_time < Time.now
+      end
+  end
 
     #検索用メゾット
     scope :plans_search, ->(n){where('title LIKE(?)', "%#{n}%")}

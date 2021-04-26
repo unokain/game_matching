@@ -50,7 +50,7 @@ RSpec.describe 'ユーザー管理機能', type: :system do
         fill_in "パスワード（確認用）", with: '20202020'
         click_on 'アカウント登録'
         click_on 'マイページ'
-        expect(page).to have_content 'ゲームスキル・実績'
+        expect(page).to have_content 'ゲームスキル'
         expect(page).to have_content 'login_test@gmail.com'
       end
     end

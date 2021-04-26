@@ -3,9 +3,15 @@ ja:
   activerecord:
     models:
       plan: イベント
+      user: ユーザー
     attributes:
       plan:
         title: タイトル
         content: プラン内容
         start_time: 開始日時
         limit_time: 申し込み期間
+      user:
+        name: 名前
+        image: 画像
+        game_skill: スキル
+        self_profile: 自己紹介

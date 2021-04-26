@@ -14,4 +14,46 @@ describe 'プランモデル機能', type: :model do
       end
     end
   end
+  describe '登録機能' do
+    let(:user) { FactoryBot.create(:user) }
+    let!(:plan) { FactoryBot.create(:plan, user: user) }
+    it '新規作成できる' do
+      expect(plan).to be_valid
+    end
+    it 'titleがない場合、無効である' do
+      plan.title = nil
+      plan.valid?
+      expect(plan).to be_invalid
+    end
+    it 'contentがない場合、無効である' do
+      plan.content = nil
+      plan.valid?
+      expect(plan).to be_invalid
+    end
+    it 'メッセージがが501文字以上の場合、無効である' do
+      plan.content = 'x' * 501
+      plan.valid?
+      expect(plan).to be_invalid
+    end
+    it '開始日時が現在時刻より前の場合、無効である' do
+      plan.start_time = Time.now - 60
+      plan.valid?
+      expect(plan).to be_invalid
+      expect(plan.errors[:start_time]).to include("は現在の日時より後の時間を選択してください")
+    end
+    it '開始日時が申し込み期限より前の場合、無効である' do
+      plan.start_time = Time.now + 3600
+      plan.limit_time = Time.now + 7200
+      plan.valid?
+      expect(plan.errors[:limit_time]).to include("は開始日時より前の時間を選択してください")
+    end
+    it '申し込み期限がnilの場合、無効である' do
+      plan.limit_time = nil
+      expect(plan).to be_invalid
+    end
+    it '開始日時がnilの場合、無効である' do
+      plan.start_time = nil
+      expect(plan).to be_invalid
+    end
+  end
 end

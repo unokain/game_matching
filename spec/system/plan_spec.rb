@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'タスク管理機能', type: :system do
+RSpec.describe 'ユーザー管理機能', type: :system do
   describe '新規作成機能' do
     context 'プランを新規作成した場合' do
       it '作成したプランが表示される' do

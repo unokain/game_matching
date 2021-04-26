@@ -41,7 +41,7 @@
         <% @plans.each do |plan| %>
           <div class="col-12 col-lg-5 plan_details mt-4 pt-3 pb-3 rounded border border-left-0">
               <div class="">
-                <%= link_to "#{plan.title.truncate(20)}", plan_path(plan.id), id:"plan_list",class:"text-dark link_underline font-weight-bold" %>
+                <%= link_to "#{plan.title.truncate(30)}", plan_path(plan.id), id:"plan_list",class:"text-dark link_underline font-weight-bold" %>
               </div>
               <hr>
               <div class="small mt-2">
