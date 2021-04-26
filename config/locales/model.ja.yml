@@ -2,9 +2,10 @@
 ja: 
   activerecord:
     models:
-      plan: イベント
+      plan: プラン
       user: ユーザー名
       comment: コメント
+      taggings: タグ一覧
     attributes:
       plan:
         title: タイトル

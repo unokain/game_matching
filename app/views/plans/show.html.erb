@@ -55,7 +55,7 @@
           <div class="col-3 offset-1">
             <%= User.human_attribute_name(:name) %>：<%= link_to "#{@plan.user.name}", user_path(@plan.user) %>
           </div>
-          <div class="col-8">タグ：
+          <div class="col-8"><%= t '.tag' %>：
             <% @tags.each do |tag| %> 
               <%= link_to "#{tag.name}(#{tag.taggings_count})", tag_path(tag.name),class:"tag_custam_show rounded p-1 m-1 link_underline"%>
             <% end %>
