@@ -11,7 +11,7 @@
           </div>
           <div class="col-7">
             <div>
-              <h5>ユーザー名</h5>
+              <h5><%= User.human_attribute_name(:name) %></h5>
               <div class="font_level_2 turn_text">
                 <%= @user.name %>
               </div>
@@ -27,7 +27,7 @@
         
         <div class="row mt-5">
           <div class="offset-1 col-3">
-            <h5>ゲームスキル</h5>
+            <h5><%= User.human_attribute_name(:game_skill) %></h5>
           </div>
           <div class="col-7 turn_text">
             <span><%= @user.game_skill%></span>
@@ -36,7 +36,7 @@
 
         <div class="row mt-5">
           <div class="offset-1 col-3">
-            <h5>簡単な自己紹介</h5>
+            <h5><%= User.human_attribute_name(:self_profile) %></h5>
           </div>
           <div class="col-7 turn_text">
             <span><%= @user.self_profile %></span>
@@ -69,13 +69,13 @@
               <div class="mt-2 row">
                 <div class="col-7">
                   <div>
-                    <span class="small">投稿者:<%= plan.user.name%></span>
+                    <span class="small"><%= User.human_attribute_name(:name) %>:<%= plan.user.name%></span>
                   </div>
                   <div class="small">
-                    <span>スタート日&nbsp;：<%= plan.start_time.strftime("%Y.%m.%d") %></span>
+                    <span><%= Plan.human_attribute_name(:start_time) %>&nbsp;：<%= plan.start_time.strftime("%Y.%m.%d") %></span>
                   </div>
                   <div class="small">
-                    <span>投稿日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<%= plan.created_at.strftime("%Y.%m.%d") %><span>
+                    <span><%= Plan.human_attribute_name(:created_at) %>&nbsp;：<%= plan.created_at.strftime("%Y.%m.%d") %><span>
                   </div>
                 </div>
                 <div class="small mx-auto">

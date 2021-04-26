@@ -54,16 +54,16 @@
               <div class="mt-2 row">
                 <div class="col-6">
                   <div>
-                    <span class="small">投稿者:<%= plan.user.name%></span>
+                    <span class="small"><%= User.human_attribute_name(:name) %>：<%= plan.user.name%></span>
                   </div>
                   <div class="small">
-                    <span>スタート日&nbsp;：<%= plan.start_time.strftime("%Y.%m.%d") %></span>
+                    <span><%= Plan.human_attribute_name(:start_time) %>&nbsp;：<%= plan.start_time.strftime("%Y.%m.%d") %></span>
                   </div>
                   <div class="small">
-                    <span>申し込み期限&nbsp;：<%= plan.limit_time.strftime("%Y.%m.%d") %></span>
+                    <span><%= Plan.human_attribute_name(:limit_time) %>&nbsp;：<%= plan.limit_time.strftime("%Y.%m.%d") %></span>
                   </div>
                   <div class="small">
-                    <span>投稿日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<%= plan.created_at.strftime("%Y.%m.%d") %><span>
+                    <span><%= Plan.human_attribute_name(:created_at) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<%= plan.created_at.strftime("%Y.%m.%d") %><span>
                   </div>
                 </div>
                 <div class="small mx-auto">

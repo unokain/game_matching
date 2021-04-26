@@ -11,35 +11,35 @@
 
     <div class="row">
       <div class="field col-5 offset-1">
-        <%= f.label :名前 %> <br />
+        <%= f.label :name %> <br />
         <%= f.text_field :name, class: "form-control", autofocus: true%>
       </div>
     </div>
 
     <div class="row">
       <div class="field col-10 offset-1">
-        <%= f.label :スキル・実績 %> <br />
+        <%= f.label :game_skill %> <br />
         <%= f.text_area :game_skill, size: "20x10", class: "form-control", autofocus: true%>
       </div>
     </div>
 
     <div class="row">
       <div class="field col-10 offset-1">
-        <%= f.label :簡単な自己紹介 %> <br />
+        <%= f.label :self_profile %> <br />
         <%= f.text_area :self_profile, size: "20x10", class: "form-control", autofocus: true%>
       </div>
     </div>
 
     <div class="row">
       <div class="field col-10 offset-1">
-        <%= f.label :アイコン %>
+        <%= f.label :image %>
         <%= f.file_field :image %>
       </div>
     </div>
 
     <div class="row">
       <div class="field col-10 offset-1">
-        <%= f.label :メールアドレス %><br />
+        <%= f.label :email %><br />
         <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %>
       </div>
     </div>

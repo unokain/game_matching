@@ -10,7 +10,7 @@
     </div>
   <% end %>
   <div class="field plan_title">
-    <%= form.label :タイトル, class: "control-label" %>
+    <%= form.label :title, class: "control-label" %>
     <%= form.text_field :title, class: "form-control" %>
   </div>
 
@@ -21,12 +21,12 @@
 
   <div class="row">
     <div class="field col-6">
-      <%= form.label :申し込み期限, class: "control-label" %>
+      <%= form.label :limit_time, class: "control-label" %>
       <%= form.datetime_field :limit_time, class: "form-control" %>
     </div>
 
     <div class="field col-6">
-      <%= form.label :開始日時, class: "control-label" %>
+      <%= form.label :start_time, class: "control-label" %>
       <%= form.datetime_field :start_time, class: "form-control"  %>
     </div>
   </div>

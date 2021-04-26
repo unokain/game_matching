@@ -11,7 +11,7 @@
           <h4 class="pt-3">プラン詳細情報</h4>
           <div class="row pt-2">
             <div class="col-6">
-             立案者：<%= link_to "#{@plan.user.name}", user_path(@plan.user) %>
+             <%= User.human_attribute_name(:name) %>：<%= link_to "#{@plan.user.name}", user_path(@plan.user) %>
             </div>
 
             <div class="col-6">
@@ -36,7 +36,7 @@
             </div>
 
             <div class="pb-5 col-6">
-              <div class="mt-4">イベント開催時間</div>
+              <div class="mt-4"><%= Plan.human_attribute_name(:start_time) %></div>
               <%= @plan.start_time.strftime("%Y.%m.%d %H時%M分") %>
             </div>
           </div>
@@ -53,7 +53,7 @@
 
         <div class="row">
           <div class="col-3 offset-1">
-            投稿者：<%= link_to "#{@plan.user.name}", user_path(@plan.user) %>
+            <%= User.human_attribute_name(:name) %>：<%= link_to "#{@plan.user.name}", user_path(@plan.user) %>
           </div>
           <div class="col-8">タグ：
             <% @tags.each do |tag| %> 
@@ -89,7 +89,7 @@
 
         <div class="row">
           <div class="text-right mt-2 small col-3 offset-8">
-            <p>作成日時<%= @plan.created_at.strftime("%Y.%m.%d  %H:%M") %></p>
+            <p><%= Plan.human_attribute_name(:created_at) %>：<%= @plan.created_at.strftime("%Y.%m.%d  %H:%M") %></p>
           </div>
         </div>
 
@@ -124,7 +124,7 @@
           <p class="pt-3">プラン詳細情報</p>
           <div class="row pt-2">
             <div class="col-12">
-            立案者：<%= link_to "#{@plan.user.name}", user_path(@plan.user) %>
+            <%= User.human_attribute_name(:name) %>：<%= link_to "#{@plan.user.name}", user_path(@plan.user) %>
             </div>
           </div>
 
@@ -150,7 +150,7 @@
               <% end %>
 
               <div class="pb-5">
-                <div class="mt-4">イベント開催時間</div>
+                <div class="mt-4"><%= Plan.human_attribute_name(:start_time) %></div>
                 <%= @plan.start_time.strftime("%Y.%m.%d %H時%M分") %>
               </div>
             </div>
