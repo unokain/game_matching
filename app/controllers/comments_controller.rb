@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_plan, only: [:create, :edit, :update]
+  before_action :ensure_current_user_comment, only:[:edit, :update]
 
   def create
     @comment = @plan.comments.build(comment_params)
@@ -50,5 +51,11 @@ class CommentsController < ApplicationController
   
   def set_plan
     @plan = Plan.find(params[:plan_id])
+  end
+
+  def ensure_current_user_comment
+    if current_user.id != @comment.user.id
+      flash[:notice]="権限がありません"
+    end
   end
 end
