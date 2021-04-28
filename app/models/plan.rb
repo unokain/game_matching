@@ -37,11 +37,10 @@ class Plan < ApplicationRecord
       if limit_time.present?
         errors.add(:limit_time, "は現在の日時より後の時間を選択してください") if self.limit_time < Time.now
       end
-  end
+    end
 
     #検索用メゾット
     scope :plans_search, ->(n){where('title LIKE(?)', "%#{n}%")}
     scope :sort_start, -> { order(limit_time: :asc) }
-
-
+    scope :sort_tag, -> { order(created_at: :desc) }
 end

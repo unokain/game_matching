@@ -5,13 +5,28 @@ class PlansController < ApplicationController
 
     def index
       if params[:tag].present?
-        @plans = Plan.page(params[:page]).per(8).tagged_with(params[:tag]).order(created_at: :desc)
+        @plans = Plan.sort_tag.page(params[:page]).per(8).tagged_with(params[:tag])
       elsif params[:search].present?
         @plans = Plan.plans_search(params[:search]).page(params[:page]).per(8).limit(20)
       elsif params[:sort_start].present?
         @plans = Plan.sort_start.page(params[:page]).per(8)
       elsif
-        @plans = Plan.all.order(created_at: :desc).page(params[:page]).per(8)
+        @plans = Plan.all.order(created_at: :desc).page(params[:page]).per(8)       
+  #   def time_limit_divide
+  #     plan_array = Plan.new
+  #     time = Time.now
+  #     array_plan_limit=[]
+  #     array_plan_unlimit=[]
+  #     plan_array.each do |plan|
+  #         if @time >= plan[:limit_time]
+  #             array_plan_limit << plan
+  #         else
+  #             array_plan_unlimit << plan
+  #         end
+  #     end
+  #     array_plan_unlimit << array_plan_limit
+  #     @plans = array_plan_unlimit.flatten!
+  # end
       end
       @tags = Plan.tag_counts_on(:tags).most_used(20)
     end
@@ -95,20 +110,4 @@ class PlansController < ApplicationController
         redirect_to plans_path
       end
     end
-
-  #   def time_limit_divide
-  #     plan_array = Plan.new
-  #     time = Time.now
-  #     array_plan_limit=[]
-  #     array_plan_unlimit=[]
-  #     plan_array.each do |plan|
-  #         if @time >= plan[:limit_time]
-  #             array_plan_limit << plan
-  #         else
-  #             array_plan_unlimit << plan
-  #         end
-  #     end
-  #     array_plan_unlimit << array_plan_limit
-  #     @plans = array_plan_unlimit.flatten!
-  # end
 end

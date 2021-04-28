@@ -1,15 +1,20 @@
 <h1 class="mb-5 mt-4 container">マイページ</h1>
 <div class="container">
   <div class="row">
-    <div class="col-9">
+    <div class="col-lg-9 col-12">
       <section class="container account_base pt-4 rounded border border-left-0">
         <div class="row mt-5">
-          <div class="col-3 offset-1">
+          <div class="col-3 offset-1 d-none d-lg-block">
             <% if @user.image.url.present? %>
               <%= image_tag @user.image.url, class:"img_c" %>
             <% end %>
           </div>
-          <div class="col-7">
+          <div class="col-2 d-lg-none d-block">
+            <% if @user.image.url.present? %>
+              <%= image_tag @user.image.url, class:"img_c_small" %>
+            <% end %>
+          </div>
+          <div class="col-lg-7 col-6 offset-3  offset-lg-1">
             <div>
               <h5><%= User.human_attribute_name(:name) %></h5>
               <div class="font_level_2 turn_text">
@@ -23,26 +28,24 @@
               <% end %>
             </div>
           </div>
-        </div>
-        
+        </div>  
         <div class="row mt-5">
-          <div class="offset-1 col-3">
+          <div class="offset-lg-1 col-lg-3 col-12">
             <h5><%= User.human_attribute_name(:game_skill) %></h5>
           </div>
-          <div class="col-7 turn_text">
+          <div class="col-lg-7 col-12 turn_text">
             <span><%= @user.game_skill%></span>
           </div>
         </div>
-
         <div class="row mt-5">
-          <div class="offset-1 col-3">
+          <div class="offset-lg-1 col-lg-3 col-12">
             <h5><%= User.human_attribute_name(:self_profile) %></h5>
           </div>
-          <div class="col-7 turn_text">
+          <div class="col-lg-7 col-12 turn_text">
             <span><%= @user.self_profile %></span>
           </div>
         </div>
-        <div class="mt-5 mr-5 text-right pb-4">
+        <div class="mt-5 mr-lg-5 mr-2 text-right pb-4">
           <% if @user.id == current_user.id %>
             <%= link_to 'プロフィールを編集', edit_user_registration_path(current_user.id), class:"btn btn-dark mb-2 rounded-pill" %>
           <% end %>
@@ -55,7 +58,7 @@
         </div>
         <div class="row">
           <% @plans.each do |plan| %>
-            <div class="col-5 plan_details mt-1 pt-3 pb-3 rounded border border-left-0">
+            <div class="col-12 col-lg-5 plan_details mt-1 pt-3 pb-3 rounded border border-left-0">
               <div class="">
                 <%= link_to "#{plan.title.truncate(20)}", plan_path(plan.id),class:"text-dark link_underline font-weight-bold" %>
               </div>
@@ -97,8 +100,7 @@
         </div>
       </section>
     </div>
-
-    <div class="col-3 account_base rounded border border-left-0">
+    <div class="col-3 account_base rounded border border-left-0 d-none d-lg-block">
       <div class="pt-4">
       <h4>繋がりのあるユーザー</h4>
         <div class="user_show mt-3">
@@ -107,7 +109,6 @@
             <li><%= "フォロワー 　　#{@user.following.count}人" %></li>
           </ul>
         </div>
-
         <div class="mt-5 pt-5">
           <h4>フォロー</h4>
         </div>
@@ -122,7 +123,6 @@
             </div>
           </div>
         <% end %>  
-
       </div>      
     </div>
   </div>

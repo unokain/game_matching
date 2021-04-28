@@ -10,11 +10,11 @@
 
           <h4 class="pt-3">プラン詳細情報</h4>
           <div class="row pt-2">
-            <div class="col-6">
+            <div class="col-8">
              <%= User.human_attribute_name(:name) %>：<%= link_to "#{@plan.user.name}", user_path(@plan.user) %>
             </div>
 
-            <div class="col-6">
+            <div class="col-4">
               <% if @plan.user.id != current_user.id %>
                 <% if Time.parse(@plan.limit_time.strftime("%Y-%m-%d %H:%M")) > Time.now %>
                   <% if @plan.taker_ids.include?(current_user.id) %>
@@ -47,15 +47,15 @@
         <hr>
         <div class="row">
           <div class="col-3 mt-2 mb-4 col-10 offset-1">
-            <h2><%= @plan.title %></h2> 
+            <h4><%= @plan.title %></h4> 
           </div>
         </div>
 
         <div class="row">
-          <div class="col-3 offset-1">
+          <div class="col-lg-3 col-11 offset-1">
             <%= User.human_attribute_name(:name) %>：<%= link_to "#{@plan.user.name}", user_path(@plan.user) %>
           </div>
-          <div class="col-8"><%= t '.tag' %>：
+          <div class="col-lg-7 col-11 offset-1 offset-lg-0"><%= t '.tag' %>：
             <% @tags.each do |tag| %> 
               <%= link_to "#{tag.name}(#{tag.taggings_count})", tag_path(tag.name),class:"tag_custam_show rounded p-1 m-1 link_underline"%>
             <% end %>
@@ -64,7 +64,7 @@
 
         <div class="row">
           <div class="plan-text col-10 offset-1 mt-5">
-            <h4>プラン内容</h4>
+            <h5>プラン内容</h5>
             <hr>
             <p><%= @plan.content %></p>
           </div>
@@ -88,13 +88,13 @@
         </div>
 
         <div class="row">
-          <div class="text-right mt-2 small col-3 offset-8">
+          <div class="text-right mt-2 small col-lg-3 offset-lg-8 col-8 offset-3 ">
             <p><%= Plan.human_attribute_name(:created_at) %>：<%= @plan.created_at.strftime("%Y.%m.%d  %H:%M") %></p>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-2 offset-10">
+          <div class="col-lg-2 offset-lg-10 col-3 offset-9">
             <%= link_to '戻る', plans_path %>
           </div>
         </div>

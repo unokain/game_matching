@@ -51,7 +51,16 @@ https://docs.google.com/spreadsheets/d/1_AxvymDTGwRX0arSO8jeZqEJ0zMDYnbIDIRahI7x
 ## 画面ワイヤーフレーム
 https://docs.google.com/spreadsheets/d/1z5FMqYAlH0Ajbo4jcn2mYRVvT_cHh_z3wTsvwsRzIHc/edit?usp=sharing
 
-## 使用予定Gem
+## 使用している技術
+* WebフレームワークにRuby on Railsを使用
+* AWSのroutes53を使用したドメイン設定
+* Rspecを使用してテスト
+* レスポンシブ対応のためにBootstrap
+* AWS Nginx uniconを使った仮想サーバーへのアプリケーションのデプロイ
+* S３ストレージを使った画像の保存
+* Ajaxを使用した動的処理
+
+## 使用しているGem
 * carrierwave
 * mini_magick
 * gem 'faker'
@@ -59,7 +68,17 @@ https://docs.google.com/spreadsheets/d/1z5FMqYAlH0Ajbo4jcn2mYRVvT_cHh_z3wTsvwsRz
 * kaminari
 * acts-as-taggable-ong
 * bootstrap
-* ajax
+* unicorn
+* rails_admin
+* webpacker
+* jquery-rails
+* dotenv-rails
+* faker
+* factory_bot_rails
+* rspec-rails
+
+## その他
+* Font AwesomeのCDNでの導入
 
 ## 使用予定の「就職term」技術
 * devise
