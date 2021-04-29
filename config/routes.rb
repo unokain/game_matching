@@ -18,4 +18,7 @@ Rails.application.routes.draw do
   root 'plans#index'
   resources :relationships, only: [:create, :destroy]
   get 'tags/:tag', to: 'plans#index', as: :tag 
+  resources :conversations do
+    resources :messages
+  end
 end

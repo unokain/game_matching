@@ -1,0 +1,77 @@
+<section class="container mt-5">
+  <div class="segment mx-auto" >   
+    <% if @conversation.recipient_id != current_user.id %>
+      <h4><%= @user_recipient.name %>さんとのトーク</h4>
+    <% end %>  
+    <% if @conversation.sender_id != current_user.id %>
+      <h4><%= @user_sender.name %>さんとのトーク</h4>
+    <% end %>  
+    <% if @over_ten %>
+      <%= link_to '以前のメッセージ', '?m=all' %>
+    <% end %>
+  </div>
+
+  <div class="ui segment mx-auto p-3">
+    <% @messages.each do |message| %>
+      <% if message.body.present? %>
+        <div class="item p-1 mt-3">
+          <% if message.user.id != current_user.id %>
+          <div class="content">
+            <div class=""><strong><%= message.user.name %></strong> <%= message.message_time %></div>
+            <div class="list">
+              <div class="item talk">
+                <i class="right triangle icon"></i>
+                <div class="talk_left">
+                  <% if @users.find(message.user.id)[:image].present? %>
+                    <%= image_tag @users.find(message.user.id).image.url, class:"img_c_small_line" %>
+                  <% end %>  
+                  <p><%= message.body %></p>
+                </div>
+                <% if message.user == current_user %>
+                  <%= message.read ? '既読' : '未読' %>
+                <% end %>  
+              </div>
+            </div>
+          </div>
+          <% end %> 
+
+          <% if message.user.id == current_user.id %>
+            <div class="content text-right">
+              <div class=""><strong><%= message.user.name %></strong> <%= message.message_time %></div>
+                <div class="list">
+                  <div class="item talk pb-0 pt-0">
+                    <i class="right triangle icon"></i>
+                    <div class="talk_right">
+                      <p class="string_size"><%= message.body %></p>
+                      <% if @users.find(message.user.id)[:image].present? %>
+                        <%= image_tag @users.find(message.user.id).image.url, class:"img_c_small_line" %>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="mr-5 pr-5">
+                    <% if message.user == current_user %>
+                      <%= message.read ? '既読' : '未読' %>
+                    <% end %>
+                  </div>  
+                </div>
+              </div>
+            <% end %> 
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+
+  <%= form_with(model:[@conversation, @message]) do |f| %>
+    <div class="row segment mx-auto">
+      <div class="field col-9">
+        <%= f.text_area :body, class: "form-control" %>
+      </div>
+        <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
+      <div class="col-2">
+        <%= f.submit "送信", class: "btn btn-dark mb-2" %>
+      </div>
+    </div> 
+  <% end %>
+
+</section>

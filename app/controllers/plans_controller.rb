@@ -1,6 +1,5 @@
 class PlansController < ApplicationController
     before_action :set_plan, only: [:show, :edit, :update, :destroy, :take, :cancel ]
-    before_action :authenticate_user!
     before_action :ensure_current_user_plan, {only: [:edit, :update, :destroy]}
 
     def index

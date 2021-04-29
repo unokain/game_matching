@@ -226,6 +226,12 @@ section div .font_small{
     width: 100px;
     height: 100px;    
 }
+.img_c_small_line{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px; 
+    vertical-align: top;     
+}
 .turn_text{
     word-wrap: break-word;
 }
@@ -238,3 +244,73 @@ section div .font_small{
 .right{
     float: right;
 }
+.segment{
+    max-width: 600px;
+}
+
+//メッセージ機能
+.talk {
+	padding:1em;
+	overflow:auto;
+}
+.talk .talk_left:before { /* 左の丸アイコン */
+	content:'';
+	display:inline-block;
+
+	vertical-align:top;
+	border-radius:50%;
+	background-size:cover;
+}
+.talk .talk_left p:before {  /* 左ふきだしの左三角を描画 */
+	content: '';
+	position:absolute;
+	top:8px;
+	left:-20px;
+	border: 12px solid transparent;
+	border-right:12px solid white;
+}
+.talk .talk_left p { /* 左ふきだしの本体 */
+	display:inline-block;
+	position:relative;
+	background-color:white;
+	border-radius:10px;
+	padding:10px;
+	margin:0 0 0 10px;
+}
+/* 右のトークボックス */
+.talk .talk_right:after { /* 右の丸アイコン */
+	content:'';
+	display:inline-block;
+	vertical-align:top;
+	border-radius:50%;
+	background-size:cover;
+	background-position:-10px;
+}
+.talk .talk_right {
+	float:right; /* 右のふきだしは全体的に右寄せ */
+    margin-top: 1em;
+    max-width: 300px;
+    word-wrap:break-word;
+}
+.talk .talk_right p:after { /* 右ふきだしの右三角を描画 */
+	content: '';
+	position:absolute;
+	top:8px;
+	right:-20px;
+	border: 12px solid transparent;
+	border-left:12px solid #85e249;
+}
+.talk .talk_right p { /* 右ふきだしの本体 */
+	display:inline-block;
+	position:relative;
+	background-color:#85e249;
+	border-radius:10px;
+	padding:10px;
+	margin:0 10px 0 0;
+}
+.string_size{
+    max-width:200px;
+    text-align: left; 
+}
+
+//メッセージ機能終わり
