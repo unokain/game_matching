@@ -63,13 +63,15 @@
 
 
   <%= form_with(model:[@conversation, @message]) do |f| %>
-    <div class="row segment mx-auto">
-      <div class="field col-9">
-        <%= f.text_area :body, class: "form-control" %>
+    <div class="row segment mx-auto no-gutters">
+      <div class="field col-11">
+        <%= f.text_field :body, :placeholder => "新しいメッセージを作成", class: "form-control" %>
       </div>
         <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
-      <div class="col-2">
-        <%= f.submit "送信", class: "btn btn-dark mb-2" %>
+      <div class="col-1 ">
+        <%= f.button :type => "submit", style: 'border-style: none;', class: "mb-2 btn_d" do %>
+          <i class="far fa-paper-plane"></i>
+        <% end %>
       </div>
     </div> 
   <% end %>
