@@ -37,7 +37,7 @@
 
           <% if message.user.id == current_user.id %>
             <div class="content text-right">
-              <div class=""><strong><%= message.user.name %></strong> <%= message.message_time %></div>
+              <div class=""><%= message.message_time %><strong> <%= message.user.name %></strong></div>
                 <div class="list">
                   <div class="item talk pb-0 pt-0">
                     <i class="right triangle icon"></i>
