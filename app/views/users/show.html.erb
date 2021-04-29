@@ -48,6 +48,8 @@
         <div class="mt-5 mr-lg-5 mr-2 text-right pb-4">
           <% if @user.id == current_user.id %>
             <%= link_to 'プロフィールを編集', edit_user_registration_path(current_user.id), class:"btn btn-dark mb-2 rounded-pill" %>
+          <% else %>
+            <%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: @user.id), method: :post, class:"btn btn-dark mb-2 rounded-pill" %>
           <% end %>
         </div>
       </section>

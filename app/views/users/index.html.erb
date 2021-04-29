@@ -17,7 +17,7 @@
       <div class="m-2 p-4 account_base rounded border border-left-0">
         <div class="row">
       
-          <div class="col-lg-3 col-5 font_level_2">
+          <div class="col-lg-3 col-5 font_level_4">
             <%= link_to "#{user.name}", user_path(user.id), class:"link_underline" %>
           </div>
          
@@ -44,7 +44,9 @@
             <% end %>
           </div>
           <div class="item col-lg-1">
-            <%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post %>
+            <% if user.id != current_user.id%> 
+             <%= link_to 'メッセージを送る', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: :post %>
+            <% end %>
           </div>
         </div>
 
