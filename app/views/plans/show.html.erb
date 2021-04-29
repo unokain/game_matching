@@ -73,12 +73,12 @@
         </div>
 
         <div class="row no-gutters">
-          <div class="col-1 offset-9 text-center">
+          <div class="col-lg-1 offset-lg-9 col-2 offset-8 text-center">
             <% if @plan.user.id == current_user.id %>
               <%= link_to '編集', edit_plan_path(@plan), class:"btn btn-dark mb-2 font_small" %> 
             <% end %>
           </div>
-          <div class="col-1 text-center">
+          <div class="col-lg-1 col-2 text-center">
             <% if @plan.user.id == current_user.id %>
               <%= link_to '削除', plan_path(@plan.id), method: :delete, class:"btn btn-danger mb-2 font_small" , data: { confirm: '本当に削除していいですか？' } %></td>
             <% end %>
