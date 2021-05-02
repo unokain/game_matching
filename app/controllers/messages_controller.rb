@@ -4,10 +4,6 @@ class MessagesController < ApplicationController
     end
 
     def index
-        # indexアクションに書かれたこれらの記載は、
-        # 一つ一つの部分で何をしているかの理解をわかりやすくするために
-        # このような記載にしていますが、実戦で用いるのには少々冗長なコードとなっているので
-        # 余力のある人はコードのリファクタリングにも挑戦してみましょう！
         @messages = @conversation.messages
         if @messages.length > 10
             @over_ten = true
