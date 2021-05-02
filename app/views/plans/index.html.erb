@@ -19,13 +19,11 @@
               <% end %> 
             </div>
           </div>
-          <div class="row">
-          </div>
         </div>
       </div>
       <div class="row mt-4">
         <div class=" col-9 col-lg-10">
-          <%= form_tag(plans_path,:method => 'get') do %>
+        <%= form_tag(plans_path,:method => 'get') do %>
           <%= text_field_tag :search ,'', class:"form-control" %>
         </div>
         <div class="col-2">
@@ -34,47 +32,48 @@
         <% end %>
       </div>
       <div class="col-7 offset-5 d-lg-none d-block mt-3">
-          <%= link_to 'プランを投稿する', new_plan_path,class:"text-white btn btn-dark btn-block rounded-pill  max-size" %>
+        <%= link_to 'プランを投稿する', new_plan_path,class:"text-white btn btn-dark btn-block rounded-pill  max-size" %>
       </div>
       <div class="row mt-3">
-        <% @plans.each do |plan| %>
+        <% @plans.preload(:user, :plan_users, :taggings).each do |plan| %>
           <div class="col-10 offset-1 col-lg-5 offset-lg-0 plan_details mt-4 pt-3 pb-3 rounded border border-left-0">
-              <div class="">
-                <%= link_to "#{plan.title.truncate(30)}", plan_path(plan.id), id:"plan_list",class:"text-dark link_underline font-weight-bold" %>
-              </div>
-              <hr>
-              <div class="small mt-2">
-                <%= plan.content.truncate(50) %>
-              </div>
-              <div class="mt-2">
-                <%= raw(plan.tag_list.map { |t| link_to t, tag_path(t),class:"tag_custam rounded p-1 link_underline"}.join(' ')) %></span>
-              </div>
-            
-              <div class="mt-2 row">
-                <div class="col-8 col-lg-6">
-                  <div>
-                    <span class="small"><%= User.human_attribute_name(:name) %>：<%= plan.user.name%></span>
-                  </div>
-                  <div class="small">
-                    <span><%= Plan.human_attribute_name(:start_time) %>&nbsp;：<%= plan.start_time.strftime("%Y.%m.%d") %></span>
-                  </div>
-                  <div class="small">
-                    <span><%= Plan.human_attribute_name(:limit_time) %>&nbsp;：<%= plan.limit_time.strftime("%Y.%m.%d") %></span>
-                  </div>
-                  <div class="small">
-                    <span><%= Plan.human_attribute_name(:created_at) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<%= plan.created_at.strftime("%Y.%m.%d") %><span>
-                  </div>
+            <div class="">
+              <%= link_to "#{plan.title.truncate(30)}", plan_path(plan.id), id:"plan_list",class:"text-dark link_underline font-weight-bold" %>
+            </div>
+            <hr>
+            <div class="small mt-2">
+              <%= plan.content.truncate(50) %>
+            </div>
+            <div class="mt-2">
+              <% plan.tags.pluck(:name).each do |tag| %>
+                  <%= link_to "#{tag}", tag_path(tag),class:"tag_custam rounded p-1 m-1 link_underline"%>
+              <% end %>
+            </div>
+            <div class="mt-2 row">
+              <div class="col-8 col-lg-6">
+                <div>
+                  <span class="small"><%= User.human_attribute_name(:name) %>：<%= plan.user.name%></span>
                 </div>
-                <div class="small mx-auto col-12 col-lg-6">
-                  <span>参加者数予定：</span>
-                  <%= plan.plan_users.length %>
-                  <span>人</span>
+                <div class="small">
+                  <span><%= Plan.human_attribute_name(:start_time) %>&nbsp;：<%= plan.start_time.strftime("%Y.%m.%d") %></span>
                 </div>
-                <div class="mx-auto mt-3">
-                  <% if Time.parse(plan.limit_time.strftime("%Y-%m-%d %H:%M")) < Time.now %>
-                    <p class="">申し込み期間終了</p>
-                  <% end %>
+                <div class="small">
+                  <span><%= Plan.human_attribute_name(:limit_time) %>&nbsp;：<%= plan.limit_time.strftime("%Y.%m.%d") %></span>
                 </div>
+                <div class="small">
+                  <span><%= Plan.human_attribute_name(:created_at) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<%= plan.created_at.strftime("%Y.%m.%d") %><span>
+                </div>
+              </div>
+              <div class="small mx-auto col-12 col-lg-6">
+                <span>参加者数予定：</span>
+                <%= plan.plan_users.length %>
+                <span>人</span>
+              </div>
+              <div class="mx-auto mt-3">
+                <% if Time.parse(plan.limit_time.strftime("%Y-%m-%d %H:%M")) < Time.now %>
+                  <p class="">申し込み期間終了</p>
+                <% end %>
+              </div>
             </div>
           </div>
           <div class="d-none d-lg-block">
