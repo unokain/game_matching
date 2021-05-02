@@ -59,7 +59,7 @@
           <h4><%= @user.name%>さんが企画したプラン</h4>
         </div>
         <div class="row">
-          <% @plans.each do |plan| %>
+          <% @plans.preload(:user, :plan_users, :taggings).each do |plan| %>
             <div class="col-12 col-lg-5 plan_details mt-1 pt-3 pb-3 rounded border border-left-0">
               <div class="">
                 <%= link_to "#{plan.title.truncate(20)}", plan_path(plan.id),class:"text-dark link_underline font-weight-bold" %>
@@ -69,7 +69,9 @@
                 <%= plan.content.truncate(50) %>
               </div>
               <div class="mt-2">
-                <%= raw(plan.tag_list.map { |t| link_to t, tag_path(t),class:"tag_custam rounded p-1 link_underline"}.join(' ')) %></span>
+                <% plan.tags.pluck(:name).each do |tag| %>
+                  <%= link_to "#{tag}", tag_path(tag),class:"tag_custam rounded p-1 m-1 link_underline"%>
+                <% end %>
               </div>
               <div class="mt-2 row">
                 <div class="col-7">
