@@ -21,7 +21,9 @@
             <li><%= link_to "ゲームマッチング（仮）", plans_path, class:"text-white link_underline header_left" %></li>
             <% if user_signed_in? %>
               <li><%= link_to "マイページ", user_path(current_user.id), class:"text-white link_underline mr-3 right" %></li>
-            <% end %>
+            <% else %>
+              <li><%= link_to "ログイン", new_user_session_path, class:"text-white link_underline mr-3 right" %></li>
+           <% end %>
           </ul>
         </div>
       </div>

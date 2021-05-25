@@ -12,6 +12,7 @@
  *
  */
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
 
 
 @import url('https://fonts.googleapis.com/css?family=Varela+Round');
@@ -324,12 +325,38 @@ section div .font_small{
 .top_backgronud {
     height: 450px;
     width: 100%;
+    background: url("/images/CGA0I9A6837.jpg");
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.6);
+    background-blend-mode: darken;
 }
+
 .top_secound_section{
     background-color:white;
-    height: 600px;
+    height: 500px;
     width: 100%;
+}
+
+@media screen and (max-width: 960px){
+    .top_secound_section{
+        background-color:white;
+        height: 700px;
+        width: 100%;
+    }
 }
 .top_width{
     max-width:400px;
+}
+.font_Kosugi{
+    font-family: 'Kosugi Maru', sans-serif;
+  }
+.third_top{
+    height: 500px;
+    width: 100%;
+}
+@media screen and (max-width: 960px){
+    .third_top{
+        height: 800px;
+        width: 100%;
+    }
 }

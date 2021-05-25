@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_plan, only: [:create, :edit, :update]
   before_action :ensure_current_user_comment, only:[:edit, :update]
 
