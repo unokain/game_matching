@@ -15,11 +15,11 @@ Rails.application.routes.draw do
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
-  root 'plans#index'
   resources :relationships, only: [:create, :destroy]
   get 'tags/:tag', to: 'plans#index', as: :tag 
   resources :conversations do
     resources :messages
   end
   resources :tops
+  root 'tops#index'
 end
